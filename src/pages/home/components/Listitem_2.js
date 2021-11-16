@@ -52,10 +52,6 @@ const Listitem_2 = () => {
                     <div className="w-[12%]">
                         <Card_2/>
                     </div>
-                    <div className="w-[12%]">
-                        <Card_2/>
-                    </div>
-                    
                 </div>
             </Container>
         </SectionDivider>
