@@ -1,4 +1,4 @@
-const Card_2 = () => {
+const Card2 = () => {
     return (
         <div className="">
             <div className="relative w-full">
@@ -15,4 +15,4 @@ const Card_2 = () => {
     )
 }
 
-export default Card_2
+export default Card2

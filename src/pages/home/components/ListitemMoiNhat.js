@@ -1,7 +1,7 @@
 import Container from "../../../components/Container"
-import Card_2 from "../../../components/Card_2"
+import Card2 from "../../../components/Card2"
 import SectionDivider from "../../../components/SectionDivider"
-const Listitem_2 = () => {
+const ListitemMoiNhat = () => {
     return (
         <SectionDivider>
             <Container>
@@ -11,46 +11,40 @@ const Listitem_2 = () => {
                 </div>
                 <div className="flex gap-10 flex-wrap">
                     <div className="w-[12%]">
-                        <Card_2/>
+                        <Card2/>
                     </div>
                     <div className="w-[12%]">
-                        <Card_2/>
+                        <Card2/>
                     </div>
                     <div className="w-[12%]">
-                        <Card_2/>
+                        <Card2/>
                     </div>
                     <div className="w-[12%]">
-                        <Card_2/>
+                        <Card2/>
                     </div>
                     <div className="w-[12%]">
-                        <Card_2/>
+                        <Card2/>
                     </div>
                     <div className="w-[12%]">
-                        <Card_2/>
+                        <Card2/>
                     </div>
                     <div className="w-[12%]">
-                        <Card_2/>
+                        <Card2/>
                     </div>
                     <div className="w-[12%]">
-                        <Card_2/>
+                        <Card2/>
                     </div>
                     <div className="w-[12%]">
-                        <Card_2/>
+                        <Card2/>
                     </div>
                     <div className="w-[12%]">
-                        <Card_2/>
+                        <Card2/>
                     </div>
                     <div className="w-[12%]">
-                        <Card_2/>
+                        <Card2/>
                     </div>
                     <div className="w-[12%]">
-                        <Card_2/>
-                    </div>
-                    <div className="w-[12%]">
-                        <Card_2/>
-                    </div>
-                    <div className="w-[12%]">
-                        <Card_2/>
+                        <Card2/>
                     </div>
                 </div>
             </Container>
@@ -58,4 +52,4 @@ const Listitem_2 = () => {
     )
 }
 
-export default Listitem_2
+export default ListitemMoiNhat
