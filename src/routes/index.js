@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import Home from '../pages/home';
 import User from '../pages/User';
+import Danhsach from '../pages/danhsach';
 import MainLayout from '../components/Layout/MainLayout';
 const Approuter = () => {
     return (
@@ -12,6 +13,7 @@ const Approuter = () => {
             <Routes>
                 <Route path="/*" element={<MainLayout/>}>
                     <Route index element={<Home/>}/>
+                    <Route path="danhsach" index element={<Danhsach/>}/>
                     <Route path="user" element={<User/>}/>
                 </Route>
                 {/* <Route path="/user" element={<UserLayout/>}>
