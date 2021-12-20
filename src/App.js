@@ -1,10 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import Approuter from './routes';
 function App() {
-  return (
-      <Approuter/>
-  );
+  return <Approuter />;
 }
 
 export default App;
