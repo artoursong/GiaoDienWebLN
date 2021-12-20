@@ -1,5 +1,5 @@
 //import { Link } from "react-router-dom"
-import Banner from "./components/Banner"
+import Banner from "../../components/Banner"
 import Thongbao from "./components/Thongbao"
 import Listitem from "./components/Listitem"
 import ListitemSangTac from "./components/ListitemSangTac"
