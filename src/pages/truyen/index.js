@@ -1,19 +1,19 @@
-import Banner from "../../components/Banner"
-import Container from "../../components/Container"
-import ThongTin from "./components/ThongTin"
+import Container from '../../components/Container';
+import SectionDivider from 'components/SectionDivider';
+import LeftSection from './components/LeftSection';
+import RightSection from './components/RightSection';
 
-const truyen = () => {
-    return (
-        <div>
-            <Banner/>
-            <Container>
-                <div className="flex mb-6">
-                    <ThongTin/>
-                </div>
-             
-            </Container>  
+const TrangTruyen = () => {
+  return (
+    <SectionDivider>
+      <Container>
+        <div className='flex gap-10'>
+          <LeftSection />
+          <RightSection />
         </div>
-    )
-}
+      </Container>
+    </SectionDivider>
+  );
+};
 
-export default truyen
+export default TrangTruyen;

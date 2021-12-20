@@ -1,29 +1,33 @@
 //import { Link } from "react-router-dom"
-import Banner from "../../components/Banner"
-import Thongbao from "./components/Thongbao"
-import Listitem from "./components/Listitem"
-import ListitemSangTac from "./components/ListitemSangTac"
-import ListitemMoiNhat from "./components/ListitemMoiNhat"
-import ListitemVuaDang from "./components/ListitemVuaDang"
-import TheoDoiNhieu from "./components/TheoDoiNhieu"
-import Container from "../../components/Container"
+
+import Thongbao from './components/Thongbao';
+import TruyenNoiBat from './components/TruyenNoiBat';
+import TruyenSangTac from './components/TruyenSangTac';
+import ListitemMoiNhat from './components/ChuongMoiNhat';
+import TruyenVuaDang from './components/TruyenVuaDang';
+import TheoDoiNhieu from './components/TheoDoiNhieu';
+import Container from '../../components/Container';
+import SectionDivider from 'components/SectionDivider';
 const home = () => {
-    return (
-        <div>
-            <Banner/>
-            <Thongbao/>
-            <Listitem />
-            <ListitemMoiNhat />
-            <ListitemSangTac />
-            <Container>
-                <div className="flex">
-                    <ListitemVuaDang />
-                    <TheoDoiNhieu />
-                </div>
-            </Container>  
-        </div>
-    )
-}
+  return (
+    <div>
+      <Thongbao />
+      <TruyenNoiBat width='' />
+      <ListitemMoiNhat />
+      <TruyenSangTac />
 
-export default home
+      <div className='bg-[rgba(227,229,232,.5)]'>
+        <SectionDivider>
+          <Container>
+            <div className='flex gap-5'>
+              <TruyenVuaDang />
+              <TheoDoiNhieu />
+            </div>
+          </Container>
+        </SectionDivider>
+      </div>
+    </div>
+  );
+};
 
+export default home;

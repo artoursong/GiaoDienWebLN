@@ -1,9 +1,5 @@
-const SectionDivider = ({children}) => {
-    return (
-        <div className="p-5">
-            {children}
-        </div>
-    )
-}
+const SectionDivider = ({ children }) => {
+  return <div className='p-14'>{children}</div>;
+};
 
-export default SectionDivider
+export default SectionDivider;

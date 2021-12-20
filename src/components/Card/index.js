@@ -1,14 +1,15 @@
-const Card = () => {
-    return (
-        <div className="w-[19%]">
-            <div className="relative w-full">
-                <img src="https://images-ext-2.discordapp.net/external/9Aa3Uxiimb-vbsbcBWErgrVUiUbNDHv2GmTuJHCLUAA/https/ih1.redbubble.net/image.2127422798.1232/flat%2C750x%2C075%2Cf-pad%2C750x1000%2Cf8f8f8.jpg?width=507&height=676" alt="ln" />
-                <div className="absolute z-10 bottom-2 left-0 w-full text-center">
-                    <span className=" text-white font-bold">Jujutsu kaisen</span>
-                </div>
-            </div>
-        </div>
-    )
-}
+const Card = ({ width = 'full' }) => {
+  return (
+    <div className={`${width} relative`}>
+      <img
+        src='https://en.datosjam.net.pe/wp-content/uploads/2021/09/Jujutsu-Kaisen-manga-reveals-cover-for-volume-17.jpg'
+        alt='img2'
+      />
+      <div className='absolute z-10 bottom-2 left-0 w-full text-center'>
+        <span className=' text-white font-bold'>Jujutsu kaisen</span>
+      </div>
+    </div>
+  );
+};
 
-export default Card
+export default Card;
