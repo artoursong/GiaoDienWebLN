@@ -1,28 +1,26 @@
-import { useState, createContext, useContext } from "React";
+import { useState, createContext, useContext } from 'react';
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [authState, setAuthState] = useState({
-        isAuth: false,
-        user: null
-    })
+  const [authState, setAuthState] = useState({
+    isAuth: false,
+    user: null,
+  });
 
-    return (
-        <AuthContext.Provider value={authState}>
-            {children}
-        </AuthContext.Provider>
-    )
-}
+  const value = [authState, setAuthState];
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
 
 const useAuth = () => {
-    const context = useContext(AuthContext);
+  const context = useContext(AuthContext);
 
-    if (context === null) {
-        throw new Error('Error')
-    }
+  if (context === null) {
+    throw new Error('Error');
+  }
 
-    return context;
-}
+  return context;
+};
 
-export { AuthProvider, useAuth }
+export { AuthProvider, useAuth };
