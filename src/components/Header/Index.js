@@ -1,4 +1,7 @@
 import Container from '../Container';
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import callApi from 'apicaller';
 
 const menu = [
   {
@@ -33,6 +36,21 @@ const menu = [
 ];
 
 const Header = () => {
+
+  const [username, setUsername] = useState("")
+  const token = {
+    tokenstring : localStorage.getItem("token")
+  }
+  useEffect(() => {
+    console.log(token)
+    if(token.tokenstring !== null){
+      callApi(`user/decodetoken`, "POST", token).then(res => setUsername(res.data.username))
+      console.log(localStorage.getItem("token"))
+    }
+  }, [])
+
+  const navigate = useNavigate();
+
   return (
     <div className='bg-white'>
       <Container>
@@ -61,7 +79,8 @@ const Header = () => {
             />
           </div>
           <div>
-            <div className='ml-5 font-bold cursor-pointer'>Đăng nhập</div>
+            {username === "" ? <div className='ml-5 font-bold cursor-pointer' onClick={() => navigate('/dangnhap')}>Đăng nhập</div> : <div className='ml-5 font-bold cursor-pointer' onClick={() => navigate('/user')}>{username}</div>}
+            
           </div>
         </div>
       </Container>

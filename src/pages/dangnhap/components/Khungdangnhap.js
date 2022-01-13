@@ -1,9 +1,24 @@
 import Container from '../../../components/Container';
+import { authService } from 'api/auth';
+import { useState } from 'react';
+import callApi from 'apicaller';
 const Khungdangnhap = () => {
+  const [username, setUsername] = useState('')
+  const [password, setPass] = useState('')
+
+  const onSubmit = (e) => {
+      const user = {
+        username: username,
+        password: password
+      }
+      authService.login(user).then(res => res.data)
+      e.preventDefault()
+  }
+
   return (
     <div>
       <Container>
-        <div className='max-w-[700px] mx-auto mt-28 border border-gray-200 rounded-md'>
+        <form onSubmit = {onSubmit} className='max-w-[700px] mx-auto mt-28 border border-gray-200 rounded-md'>
           <div className='px-4 py-2 bg-gray-100 border-b border-gray-200'>
             Đăng nhập
           </div>
@@ -17,6 +32,8 @@ const Khungdangnhap = () => {
                   <input
                     type='text'
                     className='outline-none block border px-2 py-1 border-gray-200 rounded-md w-full'
+                    onChange={(event) => { setUsername(event.target.value) }}
+                    value={username}
                   />
                 </div>
               </div>
@@ -26,8 +43,10 @@ const Khungdangnhap = () => {
                 </label>
                 <div className='w-[55%]'>
                   <input
-                    type='text'
+                    type='password'
                     className='outline-none block border border-gray-200 rounded-md w-full px-2 py-1'
+                    onChange={(event) => {setPass(event.target.value)}}
+                    value={password}
                   />
                 </div>
               </div>
@@ -41,7 +60,7 @@ const Khungdangnhap = () => {
               </div>
               <div className='w-full flex gap-8 mb-5 items-center'>
                 <div class='w-[55%] ml-auto'>
-                  <button className='px-4 py-1 bg-blue-500 text-white'>
+                  <button type = "submit" className='px-4 py-1 bg-blue-500 text-white'>
                     Login
                   </button>
                   <span className='text-blue-400 cursor-pointer hover:underline ml-7'>
@@ -59,7 +78,7 @@ const Khungdangnhap = () => {
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </Container>
     </div>
   );
