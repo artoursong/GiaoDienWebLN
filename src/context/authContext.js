@@ -1,4 +1,5 @@
 import { useState, createContext, useContext } from 'react';
+import { authService } from 'api/auth';
 
 const AuthContext = createContext();
 
@@ -23,4 +24,22 @@ const useAuth = () => {
   return context;
 };
 
-export { AuthProvider, useAuth };
+const changeuserinfo = async(setState, data) => {
+  try {
+    const response = await authService.changeinfo(data.user, data.id)
+    if (response.status===200) {
+      setState({
+        isAuth : true,
+        user : response.data
+      })
+
+      return response
+    }
+
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export { AuthProvider, useAuth, changeuserinfo };

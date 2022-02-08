@@ -1,6 +1,5 @@
 import Container from '../Container';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import { useAuth } from 'context/authContext';
 
 const menu = [
@@ -35,12 +34,20 @@ const menu = [
   },
 ];
 
+
 const Header = () => {
   const [authState] = useAuth();
 
   const navigate = useNavigate();
 
+  const logout = () => {
+    localStorage.removeItem("token")
+    window.location.reload()
+  }
+
   return (
+
+
     <div className='bg-white'>
       <Container>
         <div className='flex items-center'>
@@ -77,9 +84,12 @@ const Header = () => {
               </div>
             ) : (
               <div
-                className='ml-5 font-bold cursor-pointer'
+                className='ml-5 py-2 font-bold cursor-pointer group relative'
                 onClick={() => navigate('/user')}
               >
+                <div onClick={logout} className='w-[100px] text-center bottom-[-49px] absolute left-0 py-3 border-red-200  border bg-white group-hover:block hidden'>
+                  Đăng xuất
+                </div>
                 {authState.user.username}
               </div>
             )}

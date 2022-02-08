@@ -9,6 +9,10 @@ const authService = {
       tokenstring: localStorage.getItem('token'),
     });
   },
+
+  changeinfo: (userData, id) => {
+    return khachAPI.put(`user/${id}`, userData);
+  }
 };
 
 export { authService };
