@@ -1,30 +1,32 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from '../pages/home';
-import User from '../pages/User';
-import Danhsach from '../pages/danhsach';
-import MainLayout from '../components/Layout/MainLayout';
-import Dangnhap from '../pages/dangnhap';
-import Truyen from '../pages/truyen';
-import ProtectedRoute from './ProtectedRoute';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "../pages/home";
+import User from "../pages/User";
+import Danhsach from "../pages/danhsach";
+import MainLayout from "../components/Layout/MainLayout";
+import Dangnhap from "../pages/dangnhap";
+import Truyen from "../pages/truyen";
+import ProtectedRoute from "./ProtectedRoute";
+import TaoTruyen from "pages/taotruyen";
 
 const Approuter = () => {
   return (
     <Router>
       <Routes>
-        <Route path='/*' element={<MainLayout />}>
+        <Route path="/*" element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path='danhsach' element={<Danhsach />} />
+          <Route path="danhsach" element={<Danhsach />} />
           <Route
-            path='user'
+            path="user"
             element={
               <ProtectedRoute isPrivate={true}>
                 <User />
               </ProtectedRoute>
             }
           />
-          <Route path='truyen' element={<Truyen />} />
+          <Route path="dangtruyen" element={<TaoTruyen />} />
+          <Route path="truyen/:id" element={<Truyen />} />
         </Route>
-        <Route path='dangnhap' element={<Dangnhap />} />
+        <Route path="dangnhap" element={<Dangnhap />} />
         {/* <Route path="/user" element={<UserLayout/>}>
                     <Route index element={<User/>}/>
                     <Route path="edit" element={<Edit/>}/>

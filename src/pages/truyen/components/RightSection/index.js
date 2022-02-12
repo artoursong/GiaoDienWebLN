@@ -1,9 +1,9 @@
 import Thongtindichgia from "./components/Thongtindichgia";
-const RightSection = () => {
+const RightSection = ({ book }) => {
   return (
-  <div className='w-[calc(20%-20px)]'>
-    <Thongtindichgia />
-  </div>
+    <div className="w-[calc(20%-20px)]">
+      <Thongtindichgia book={book} />
+    </div>
   );
 };
 

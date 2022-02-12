@@ -1,5 +1,5 @@
 import { useAuth } from 'context/authContext';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { changeuserinfo } from 'context/authContext';
 const Thongtinuser = () => {
   const [authState, setAuthState] = useAuth();
