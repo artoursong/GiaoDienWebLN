@@ -1,31 +1,14 @@
 //import { Link } from "react-router-dom"
 
-import Thongbao from './components/Thongbao';
-import TruyenNoiBat from './components/TruyenNoiBat';
-import TruyenSangTac from './components/TruyenSangTac';
-import ListitemMoiNhat from './components/ChuongMoiNhat';
-import TruyenVuaDang from './components/TruyenVuaDang';
-import TheoDoiNhieu from './components/TheoDoiNhieu';
-import Container from '../../components/Container';
-import SectionDivider from 'components/SectionDivider';
+import FeaturedBooks from "./components/FeaturedBooks";
+import BaseListBook from "./components/BaseListBook";
+
 const home = () => {
   return (
-    <div>
-      <Thongbao />
-      <TruyenNoiBat width='' />
-      <ListitemMoiNhat />
-      <TruyenSangTac />
-
-      <div className='bg-[rgba(227,229,232,.5)]'>
-        <SectionDivider>
-          <Container>
-            <div className='flex gap-5'>
-              <TruyenVuaDang />
-              <TheoDoiNhieu />
-            </div>
-          </Container>
-        </SectionDivider>
-      </div>
+    <div className="bg-[#070709]">
+      <FeaturedBooks />
+      <BaseListBook sectionTitle={"Chương mới cập nhật"} />
+      <BaseListBook sectionTitle={"Truyện mới nhất"} />
     </div>
   );
 };

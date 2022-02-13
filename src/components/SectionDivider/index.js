@@ -1,5 +1,5 @@
 const SectionDivider = ({ children }) => {
-  return <div className='p-14'>{children}</div>;
+  return <div className="p-20">{children}</div>;
 };
 
 export default SectionDivider;

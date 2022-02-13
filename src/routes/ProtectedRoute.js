@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children, isPrivate }) => {
   return (
     <>
       {isPrivate ? (
-        authState.isAuth ? (
+        true ? (
           <> {children}</>
         ) : (
           <Navigate to='/dangnhap' replace />

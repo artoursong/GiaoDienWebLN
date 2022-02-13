@@ -1,18 +1,18 @@
-import './App.css';
-import Approuter from './routes';
-import { useAuth } from './context/authContext';
-import { useEffect, useState } from 'react';
-import { authService } from 'api/auth';
+import "./App.css";
+import AppRouter from "./routes";
+import { useAuth } from "./context/authContext";
+import { useEffect, useState } from "react";
+import { authService } from "api/auth";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [, setAuthState] = useAuth();
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem("token")) {
       authService
         .verify()
-        .then(res => {
+        .then((res) => {
           if (res.status === 200) {
             setAuthState({
               isAuth: true,
@@ -26,7 +26,7 @@ function App() {
     }
   }, [setAuthState]);
 
-  return <div>{isLoading ? '...Loading' : <Approuter />}</div>;
+  return <div>{isLoading ? "...Loading" : <AppRouter />}</div>;
 }
 
 export default App;
