@@ -1,5 +1,5 @@
-import { useAuth } from 'context/authContext';
-import { Navigate } from 'react-router-dom';
+import { useAuth } from "context/authContext";
+import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children, isPrivate }) => {
   const [authState] = useAuth();
@@ -7,10 +7,10 @@ const ProtectedRoute = ({ children, isPrivate }) => {
   return (
     <>
       {isPrivate ? (
-        true ? (
+        authState.isAuth ? (
           <> {children}</>
         ) : (
-          <Navigate to='/dangnhap' replace />
+          <Navigate to="/dangnhap" replace />
         )
       ) : (
         <> {children}</>
