@@ -2,7 +2,7 @@ import { FiSearch } from "react-icons/fi";
 
 const Banner = () => {
   return (
-    <div className="flex min-h-[inherit] w-full flex-col items-center justify-center">
+    <div className="flex min-h-[400px] w-full flex-col items-center justify-center">
       <h1 className="mb-10 text-5xl font-bold text-[#cbdff3]">
         Welcome to Light Novel's World
       </h1>

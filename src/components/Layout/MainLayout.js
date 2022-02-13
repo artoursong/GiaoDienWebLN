@@ -1,19 +1,18 @@
 import { Outlet } from "react-router-dom";
-import Header from "../Header/Index";
+import Header from "../Header";
 import Footer from "../Footer/Index";
-import Search from "components/Search";
 
-const MainLayout = () => {
+const MainLayout = ({ children }) => {
   return (
-    <div className="flex min-h-screen w-full flex-col">
-      <div className="homePage min-h-[450px] w-full">
-        <div className="min-h-[inherit] bg-gradient-to-t from-[#070709]">
-          <Header />
-          <Search />
-        </div>
+    <div className="relative w-full bg-[#070709]">
+      <div className="homePage absolute top-0 min-h-[450px] w-full">
+        <div className="min-h-[inherit] bg-gradient-to-t from-[#070709]"></div>
       </div>
-      <Outlet />
-      <Footer />
+      <div className="relative z-50 flex min-h-screen flex-col">
+        <Header />
+        <Outlet />
+        <Footer />
+      </div>
     </div>
   );
 };

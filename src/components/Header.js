@@ -1,4 +1,4 @@
-import Container from "../Container";
+import Container from "./Container";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "context/authContext";
 
@@ -75,7 +75,7 @@ const Header = () => {
             {!authState.user ? (
               <button
                 className="cursor-pointer overflow-hidden rounded-md bg-white bg-opacity-5 px-4 py-2 font-bold text-white backdrop-blur-sm transition-all hover:bg-opacity-10"
-                onClick={() => navigate("/dangnhap")}
+                onClick={() => navigate("/login")}
               >
                 Đăng nhập
               </button>
