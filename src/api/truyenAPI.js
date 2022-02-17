@@ -23,6 +23,10 @@ const bookService = {
   getUserByBookId: (id) => {
     return khachAPI.get(`book/getuser/${id}`);
   },
+
+  getTop10: () => {
+    return khachAPI.get(`book/gettop10`);
+  },
 };
 
 export default bookService;

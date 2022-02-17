@@ -12,19 +12,8 @@ import bookService from "api/truyenAPI";
 import FeaturedCard from "./FeaturedCard";
 import SectionHeader from "components/Section/SectionHeader";
 
-const FeaturedBooks = () => {
-  const [, setBooks] = useState([]);
-
-  useEffect(() => {
-    const fetchBooks = async () => {
-      const response = await bookService.getBook();
-      if (response.status === 200) {
-        setBooks(response.data);
-      }
-    };
-
-    fetchBooks();
-  }, []);
+const FeaturedBooks = ({ data }) => {
+  const { top10NoiBat, top10TheoDoi } = data;
 
   const renderColorByRank = (index, type) => {
     switch (index) {
@@ -66,11 +55,13 @@ const FeaturedBooks = () => {
               modules={[Navigation]}
               navigation={true}
             >
-              {new Array(10).fill("").map((_, index) => (
-                <SwiperSlide key={index}>
-                  <FeaturedCard width="w-full" />
-                </SwiperSlide>
-              ))}
+              {top10NoiBat.length > 0
+                ? top10NoiBat.map((truyen) => (
+                    <SwiperSlide key={truyen.iD_Book}>
+                      <FeaturedCard width="w-full" book={truyen} />
+                    </SwiperSlide>
+                  ))
+                : null}
             </Swiper>
           </div>
           <div className="w-[35%]">
@@ -92,7 +83,7 @@ const FeaturedBooks = () => {
             </div>
 
             <div className="max-h-[350px] overflow-auto pr-2">
-              {new Array(10).fill("").map((_, index) => (
+              {top10TheoDoi.map((truyen, index) => (
                 <div
                   key={index}
                   className={`mb-4 flex items-center rounded-md bg-gray-50 p-2 last:mb-0 ${renderColorByRank(
@@ -112,10 +103,10 @@ const FeaturedBooks = () => {
                     </p>
                   )}
                   <h4 className="max-w-[60%] truncate font-semibold text-[#cbdff3]">
-                    The Raising of The Shield Hero
+                    {truyen.name}
                   </h4>
                   <p className="ml-auto text-sm text-[#cbdff3]">
-                    10.000 theo dõi
+                    {truyen.follow_sum} theo dõi
                   </p>
                 </div>
               ))}
