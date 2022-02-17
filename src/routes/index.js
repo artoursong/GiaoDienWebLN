@@ -7,8 +7,9 @@ import Dangnhap from "../pages/dangnhap";
 import Truyen from "../pages/truyen";
 import ProtectedRoute from "./ProtectedRoute";
 import TaoTruyen from "pages/taotruyen";
-import HeroSearch from "components/HeroSearch";
 import PageHeader from "components/PageHeader";
+import QuanLyTruyen from "pages/QuanLyTruyen";
+import DocTruyen from "pages/doctruyen";
 
 const AppRouter = () => {
   return (
@@ -19,6 +20,7 @@ const AppRouter = () => {
           <Route path="danhsach" element={<Danhsach />} />
 
           <Route path="truyen/:id" element={<Truyen />} />
+          <Route path="manage/:id" element={<QuanLyTruyen />} />
         </Route>
         <Route path="login" element={<Dangnhap />} />
         {/* <Route path="/user" element={<UserLayout/>}>
@@ -38,6 +40,7 @@ const AppRouter = () => {
           <Route index element={<User />} />
         </Route>
         <Route path="dangtruyen" element={<TaoTruyen />} />
+        <Route path="truyen" element={<DocTruyen />} />
       </Routes>
     </Router>
   );

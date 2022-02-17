@@ -27,6 +27,17 @@ const bookService = {
   getTop10: () => {
     return khachAPI.get(`book/gettop10`);
   },
+  createChapter: (data) => {
+    const { iD_Volume, name, text } = data;
+    return khachAPI.post("/chapter", {
+      iD_Volume,
+      name,
+      text,
+    });
+  },
+  getChapter: (id) => {
+    return khachAPI.get(`/chapter/${id}`);
+  },
 };
 
 export default bookService;
