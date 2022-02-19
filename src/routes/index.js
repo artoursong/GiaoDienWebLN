@@ -10,6 +10,9 @@ import TaoTruyen from "pages/taotruyen";
 import PageHeader from "components/PageHeader";
 import QuanLyTruyen from "pages/QuanLyTruyen";
 import DocTruyen from "pages/doctruyen";
+import FormTaoTap from "pages/QuanLyTruyen/components/FormTaoTap";
+import FormTaoChuong from "pages/QuanLyTruyen/components/FormTaoChuong";
+import { TruyenProvider } from "context/truyenContext";
 
 const AppRouter = () => {
   return (
@@ -20,7 +23,29 @@ const AppRouter = () => {
           <Route path="danhsach" element={<Danhsach />} />
 
           <Route path="truyen/:id" element={<Truyen />} />
-          <Route path="manage/:id" element={<QuanLyTruyen />} />
+          <Route
+            path="manage/:id"
+            element={
+              <TruyenProvider>
+                <QuanLyTruyen />
+              </TruyenProvider>
+            }
+          >
+            <Route path="create" element={<FormTaoTap mode={"create"} />} />
+            <Route
+              path="volume/:volumeId/edit"
+              element={<FormTaoTap mode={"edit"} />}
+            />
+
+            <Route
+              path="volume/:volumeId/create"
+              element={<FormTaoChuong mode={"create"} />}
+            />
+            {/* <Route
+              path="chapter/edit/:chapterId"
+              element={<FormTaoChuong mode={"edit"} />}
+            /> */}
+          </Route>
         </Route>
         <Route path="login" element={<Dangnhap />} />
         {/* <Route path="/user" element={<UserLayout/>}>

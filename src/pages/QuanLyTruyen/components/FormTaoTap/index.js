@@ -1,13 +1,41 @@
-import React from "react";
+import { useEffect } from "react";
 import initialValues from "./formik/initialValues";
 import validationSchema from "./formik/validationSchema";
 import { useFormik } from "formik";
+import { useParams } from "react-router-dom";
+import bookService from "api/truyenAPI";
+import { useTruyen } from "context/truyenContext";
+import LoadingSpinner from "components/LoadingSpinner";
 
-const FormTaoTap = () => {
+const FormTaoTap = ({ mode }) => {
+  const [, setTruyen] = useTruyen();
+  const params = useParams();
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: () => console.log("Submitted"),
+    onSubmit: async (_, { resetForm }) => {
+      let response;
+      if (mode !== "edit") {
+        response = await bookService.createVolume({
+          iD_Book: +params.id,
+          name: values.title,
+        });
+      } else {
+        response = await bookService.editVolume({
+          iD_Volume: +params.volumeId,
+          name: values.title,
+        });
+      }
+      if (response.status === 200) {
+        setTruyen((prev) => ({
+          ...prev,
+          volumes: prev.volumes.map((volume) =>
+            volume.id === response.data.id ? response.data : volume
+          ),
+        }));
+        resetForm();
+      }
+    },
   });
 
   const {
@@ -18,10 +46,25 @@ const FormTaoTap = () => {
     handleChange,
     isSubmitting,
     handleSubmit,
+    setValues,
   } = formik;
+
+  useEffect(() => {
+    if (mode === "edit") {
+      const fetchVolume = async () => {
+        const response = await bookService.getVolume(params.volumeId);
+
+        if (response.status === 200) {
+          setValues({ title: response.data.name });
+        }
+      };
+      fetchVolume();
+    }
+  }, [mode, params.volumeId, setValues]);
 
   return (
     <div>
+      <h1 className="mb-5 text-3xl font-bold text-[#cbdff3]">Tạo tập</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-5">
           <label
@@ -53,9 +96,12 @@ const FormTaoTap = () => {
           type="submit"
           className="rounded bg-blue-600 py-2 px-6 text-white"
         >
-          Tạo tập
+          {mode !== "edit" ? "Tạo tập" : "Sửa tập"}
         </button>
       </form>
+      <div className="w-[50px]">
+        {isSubmitting ? <LoadingSpinner size={10} /> : null}
+      </div>
     </div>
   );
 };

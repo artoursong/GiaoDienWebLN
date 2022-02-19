@@ -38,6 +38,18 @@ const bookService = {
   getChapter: (id) => {
     return khachAPI.get(`/chapter/${id}`);
   },
+  editChapter: (data) => {
+    return khachAPI.post("/");
+  },
+  createVolume: (data) => {
+    return khachAPI.post("/volume", data);
+  },
+  getVolume: (id) => {
+    return khachAPI.get(`volume/${id}`);
+  },
+  editVolume: (data) => {
+    return khachAPI.post(`volume`, data);
+  },
 };
 
 export default bookService;
