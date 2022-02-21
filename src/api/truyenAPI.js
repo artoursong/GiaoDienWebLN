@@ -50,6 +50,9 @@ const bookService = {
   editVolume: (data) => {
     return khachAPI.post(`volume`, data);
   },
+  getBooksByUserId: (id) => {
+    return khachAPI.get(`book/bookofuser/${id}`);
+  },
 };
 
 export default bookService;

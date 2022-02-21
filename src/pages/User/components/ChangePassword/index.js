@@ -1,10 +1,43 @@
-import React from "react";
+import { useState } from "react";
 import initialValues from "./formik/initialValues";
 import validationSchema from "./formik/validationSchema";
 import { useFormik } from "formik";
+import { authService } from "api/auth";
+import { useAuth } from "context/authContext";
 
 const ChangePassword = () => {
-  const formik = useFormik({ validationSchema, initialValues });
+  const [authState] = useAuth();
+  const [notification, setNotification] = useState({ type: "", message: "" });
+  const formik = useFormik({
+    validationSchema,
+    initialValues,
+    onSubmit: async (values, { setSubmitting, resetForm }) => {
+      setSubmitting(true);
+      setNotification({
+        type: "",
+        message: "",
+      });
+      const response = await authService.changePassword({
+        oldPass: values.password,
+        newPass: values.newPassword,
+        iD_User: authState.user.iD_User,
+      });
+
+      if (response.status === 200) {
+        setNotification({
+          type: "success",
+          message: "Đổi mật khẩu thành công!",
+        });
+      } else {
+        setNotification({
+          type: "error",
+          message: "Đã xảy ra lỗi. Vui lòng thử lại!",
+        });
+      }
+      resetForm();
+      setSubmitting(false);
+    },
+  });
 
   const {
     values,
@@ -95,8 +128,19 @@ const ChangePassword = () => {
               ) : null}
             </div>
           </div>
+          {notification.message ? (
+            <span
+              className={`${
+                notification.type === "error"
+                  ? "text-red-500"
+                  : "mb-2 block text-green-600"
+              }`}
+            >
+              {notification.message}
+            </span>
+          ) : null}
           <button
-            className="rounded-md bg-blue-500 px-4 py-2 text-lg text-white transition-all hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50"
+            className="rounded-md bg-blue-500 px-4 py-2 text-white transition-all hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50"
             type="submit"
             disabled={
               errors.confirmPassword ||

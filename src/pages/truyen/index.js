@@ -36,7 +36,7 @@ const BookDetailPage = () => {
       ) : book ? (
         <div className="mx-auto max-w-[1240px] px-5">
           <SectionDivider>
-            <div className="flex items-start gap-10 py-10">
+            <div className="flex items-start gap-10 pt-10">
               <div className="relative max-w-[250px]">
                 <img
                   src={book.image}
@@ -130,7 +130,7 @@ const BookDetailPage = () => {
           <Description desc={book.mo_ta} />
           <div className="flex items-start gap-10 pb-20">
             <div className="w-[70%]">
-              <Chapters />
+              <Chapters volumes={book.volumes} />
             </div>
             <div className="sticky top-2 w-[30%]">
               <Suggestions />

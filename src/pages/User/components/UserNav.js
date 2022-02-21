@@ -29,7 +29,7 @@ const UserNav = () => {
         Đổi mật khẩu
       </NavLink>
       <NavLink
-        to="/novels"
+        to="novels"
         className={(link) =>
           `${
             !link.isActive

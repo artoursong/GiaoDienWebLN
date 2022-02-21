@@ -7,7 +7,6 @@ import Dangnhap from "../pages/dangnhap";
 import Truyen from "../pages/truyen";
 import ProtectedRoute from "./ProtectedRoute";
 import TaoTruyen from "pages/taotruyen";
-import PageHeader from "components/PageHeader";
 import QuanLyTruyen from "pages/QuanLyTruyen";
 import DocTruyen from "pages/doctruyen";
 import FormTaoTap from "pages/QuanLyTruyen/components/FormTaoTap";
@@ -15,6 +14,7 @@ import FormTaoChuong from "pages/QuanLyTruyen/components/FormTaoChuong";
 import { TruyenProvider } from "context/truyenContext";
 import Profile from "pages/User/components/Profile";
 import ChangePassword from "pages/User/components/ChangePassword";
+import UserNovels from "pages/User/components/PostedNovels";
 
 const AppRouter = () => {
   return (
@@ -59,6 +59,7 @@ const AppRouter = () => {
           >
             <Route path="profile" element={<Profile />} />
             <Route path="password" element={<ChangePassword />} />
+            <Route path="novels" element={<UserNovels />} />
           </Route>
           <Route path="login" element={<Dangnhap />} />
           {/* <Route path="/user" element={<UserLayout/>}>

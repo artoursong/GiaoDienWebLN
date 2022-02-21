@@ -6,7 +6,11 @@ import HeroSearch from "components/HeroSearch";
 import bookService from "api/truyenAPI";
 
 const Home = () => {
-  const [data, setData] = useState({ top10TheoDoi: [], top10NoiBat: [] });
+  const [data, setData] = useState({
+    top10TheoDoi: [],
+    top10NoiBat: [],
+    newUpdate: [],
+  });
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -27,10 +31,19 @@ const Home = () => {
     <div>
       <Container>
         <HeroSearch />
-        {isLoading ? null : <FeaturedBooks data={data} />}
+        {isLoading ? null : (
+          <>
+            <FeaturedBooks data={data} />
+            {data.newUpdate.length > 0 ? (
+              <BaseListBook
+                sectionTitle={"Truyện mới nhất"}
+                books={data.newUpdate}
+              />
+            ) : null}
+          </>
+        )}
 
-        {/* <BaseListBook sectionTitle={"Chương mới cập nhật"} />
-        <BaseListBook sectionTitle={"Truyện mới nhất"} /> */}
+        {/* <BaseListBook sectionTitle={"Chương mới cập nhật"} /> */}
       </Container>
     </div>
   );

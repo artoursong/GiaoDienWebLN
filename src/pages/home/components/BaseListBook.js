@@ -8,7 +8,8 @@ import FeaturedCard from "./FeaturedCard";
 import SectionDivider from "components/Section/SectionDivider";
 import SectionHeader from "components/Section/SectionHeader";
 
-const BaseListBook = ({ sectionTitle }) => {
+const BaseListBook = ({ sectionTitle, books }) => {
+  console.log(books);
   return (
     <SectionDivider>
       <div className="mb-10">
@@ -24,9 +25,9 @@ const BaseListBook = ({ sectionTitle }) => {
         modules={[Navigation]}
         navigation={true}
       >
-        {new Array(10).fill("").map((_, index) => (
+        {books.map((book, index) => (
           <SwiperSlide key={index}>
-            <FeaturedCard width="w-full" />
+            <FeaturedCard width="w-full" book={book} />
           </SwiperSlide>
         ))}
       </Swiper>

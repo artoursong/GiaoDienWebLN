@@ -17,6 +17,9 @@ const authService = {
   createbook: (bookData) => {
     return khachAPI.post(`book`, bookData);
   },
+  changePassword: (data) => {
+    return khachAPI.put("user/changepass", data);
+  },
 };
 
 export { authService };
