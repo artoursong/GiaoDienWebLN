@@ -13,6 +13,8 @@ import DocTruyen from "pages/doctruyen";
 import FormTaoTap from "pages/QuanLyTruyen/components/FormTaoTap";
 import FormTaoChuong from "pages/QuanLyTruyen/components/FormTaoChuong";
 import { TruyenProvider } from "context/truyenContext";
+import Profile from "pages/User/components/Profile";
+import ChangePassword from "pages/User/components/ChangePassword";
 
 const AppRouter = () => {
   return (
@@ -41,28 +43,28 @@ const AppRouter = () => {
               path="volume/:volumeId/create"
               element={<FormTaoChuong mode={"create"} />}
             />
+
             {/* <Route
               path="chapter/edit/:chapterId"
               element={<FormTaoChuong mode={"edit"} />}
             /> */}
           </Route>
-        </Route>
-        <Route path="login" element={<Dangnhap />} />
-        {/* <Route path="/user" element={<UserLayout/>}>
+          <Route
+            path="user"
+            element={
+              <ProtectedRoute isPrivate={true}>
+                <User />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="profile" element={<Profile />} />
+            <Route path="password" element={<ChangePassword />} />
+          </Route>
+          <Route path="login" element={<Dangnhap />} />
+          {/* <Route path="/user" element={<UserLayout/>}>
                     <Route index element={<User/>}/>
                     <Route path="edit" element={<Edit/>}/>
                 </Route> */}
-        <Route
-          path="user"
-          element={
-            <ProtectedRoute isPrivate={true}>
-              <MainLayout>
-                <PageHeader title={"Trang cá nhân"} />
-              </MainLayout>
-            </ProtectedRoute>
-          }
-        >
-          <Route index element={<User />} />
         </Route>
         <Route path="dangtruyen" element={<TaoTruyen />} />
         <Route path="truyen" element={<DocTruyen />} />
