@@ -13,7 +13,7 @@ const FeaturedCard = ({ width = "full", book }) => {
       />
       <div className="absolute inset-0 z-[3] h-full w-full bg-gradient-to-t from-black"></div>
       <div className="absolute bottom-0 z-[4] w-full p-6 text-[#cbdff3]">
-        <Link to={`truyen/${book.iD_Book}`}>
+        <Link to={`detail/${book.iD_Book}`}>
           <h2 className="mb-2 w-full truncate text-lg font-semibold">
             {book.name}
           </h2>

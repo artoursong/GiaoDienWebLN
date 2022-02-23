@@ -1,5 +1,5 @@
 import SectionHeader from "components/Section/SectionHeader";
-import SectionDivider from "components/Section/SectionDivider";
+import { Link } from "react-router-dom";
 
 const Chapters = ({ volumes }) => {
   return (
@@ -28,7 +28,12 @@ const Chapters = ({ volumes }) => {
                       className="mb-2 flex w-full cursor-pointer justify-between rounded-md py-1 px-2 transition-all last:mb-0 even:bg-gray-50 even:bg-opacity-10 odd:hover:bg-gray-50 odd:hover:bg-opacity-20 even:hover:bg-opacity-20"
                       key={chapter.id}
                     >
-                      <span className="text-[#c9e1f8]">{chapter.name}</span>
+                      <Link
+                        to={`/truyen/${chapter.id}`}
+                        className="text-[#c9e1f8]"
+                      >
+                        {chapter.name}
+                      </Link>
                       <span className="text-[#c9e1f8]">
                         {new Intl.DateTimeFormat(["ban", "id"]).format(
                           new Date(chapter.create_date)

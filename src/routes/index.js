@@ -23,8 +23,8 @@ const AppRouter = () => {
         <Route path="/*" element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path="danhsach" element={<Danhsach />} />
-
-          <Route path="truyen/:id" element={<Truyen />} />
+          <Route path="truyen/:id" element={<DocTruyen />} />
+          <Route path="detail/:id" element={<Truyen />} />
           <Route
             path="manage/:id"
             element={
@@ -68,7 +68,6 @@ const AppRouter = () => {
                 </Route> */}
         </Route>
         <Route path="dangtruyen" element={<TaoTruyen />} />
-        <Route path="truyen" element={<DocTruyen />} />
       </Routes>
     </Router>
   );

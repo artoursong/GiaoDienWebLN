@@ -133,7 +133,7 @@ const BookDetailPage = () => {
               <Chapters volumes={book.volumes} />
             </div>
             <div className="sticky top-2 w-[30%]">
-              <Suggestions />
+              <Suggestions books={book.same_Category} />
             </div>
           </div>
         </div>

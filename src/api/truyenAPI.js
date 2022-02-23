@@ -53,6 +53,15 @@ const bookService = {
   getBooksByUserId: (id) => {
     return khachAPI.get(`book/bookofuser/${id}`);
   },
+  getBookmark: (data) => {
+    return khachAPI.post(`bookmark/getbookmark`, data);
+  },
+  createBookmark: (data) => {
+    return khachAPI.post(`bookmark`, data);
+  },
+  deleteBookmark: (data) => {
+    return khachAPI.post(`bookmark/deletebookmark`, data);
+  },
 };
 
 export default bookService;
