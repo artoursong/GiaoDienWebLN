@@ -72,8 +72,18 @@ const bookService = {
   deleteVolume: (id) => {
     return khachAPI.delete(`/volume/${id}`);
   },
-  getComment: (idBook) => {
-    return khachAPI.get(`comment/commentofbook/${idBook}`);
+  getComment: (data) => {
+    return khachAPI.post(`comment/commentofbook`, data);
+  },
+
+  deleteChapter: (id) => {
+    return khachAPI.delete(`chapter/${id}`);
+  },
+  deleteBook: (id) => {
+    return khachAPI.delete(`book/${id}`);
+  },
+  postComment: (data) => {
+    return khachAPI.post("comment", data);
   },
 };
 

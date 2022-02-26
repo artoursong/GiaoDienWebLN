@@ -25,6 +25,13 @@ const UserNovels = () => {
     }
   }, [authState.user]);
 
+  const handleDeleteBook = async (id) => {
+    const response = await bookService.deleteBook(id);
+    if (response.status === 200 && response.data) {
+      setBooks((prev) => prev.filter((book) => book.iD_Book !== id));
+    }
+  };
+
   return (
     <div>
       {isLoading ? (
@@ -34,7 +41,11 @@ const UserNovels = () => {
       ) : books.length > 0 ? (
         <div className="grid grid-cols-4 gap-4">
           {books.map((book) => (
-            <UserNovelCard book={book} key={book.iD_Book} />
+            <UserNovelCard
+              book={book}
+              key={book.iD_Book}
+              deleteBook={handleDeleteBook}
+            />
           ))}
         </div>
       ) : null}

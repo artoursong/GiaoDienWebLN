@@ -18,6 +18,19 @@ const ListVolume = ({ volume, setTruyen }) => {
     }
   };
 
+  const handleDeleteChapter = async (id) => {
+    const response = await bookService.deleteChapter(id);
+
+    if (response.status === 200) {
+      setTruyen((prev) => ({
+        ...prev,
+        volumes: prev.volumes.map((volume) =>
+          response.data.id === volume.id ? { ...response.data } : volume
+        ),
+      }));
+    }
+  };
+
   return (
     <ul className="text-[#cbdff3]">
       <li className="block py-2">
@@ -55,9 +68,13 @@ const ListVolume = ({ volume, setTruyen }) => {
             ? volume.listchapter.map((chapter) => (
                 <li
                   key={chapter.id}
-                  className="max-w-max cursor-pointer line-clamp-1 before:mr-2 before:content-['+'] hover:text-blue-500"
+                  className="flex w-full cursor-pointer items-center before:mr-2 before:content-['+'] hover:text-blue-500"
                 >
-                  {chapter.name}
+                  <span className="line-clamp-1"> {chapter.name}</span>
+                  <BsTrash
+                    onClick={() => handleDeleteChapter(chapter.id)}
+                    className="ml-auto hover:text-blue-500"
+                  />
                 </li>
               ))
             : "Chưa có chapter nào"}

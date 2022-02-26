@@ -28,9 +28,11 @@ const AppRouter = () => {
           <Route
             path="manage/:id"
             element={
-              <TruyenProvider>
-                <QuanLyTruyen />
-              </TruyenProvider>
+              <ProtectedRoute isPrivate={true}>
+                <TruyenProvider>
+                  <QuanLyTruyen />
+                </TruyenProvider>
+              </ProtectedRoute>
             }
           >
             <Route path="create" element={<FormTaoTap mode={"create"} />} />
@@ -61,13 +63,14 @@ const AppRouter = () => {
             <Route path="password" element={<ChangePassword />} />
             <Route path="novels" element={<UserNovels />} />
           </Route>
-          <Route path="login" element={<Dangnhap />} />
+
           {/* <Route path="/user" element={<UserLayout/>}>
                     <Route index element={<User/>}/>
                     <Route path="edit" element={<Edit/>}/>
                 </Route> */}
         </Route>
         <Route path="dangtruyen" element={<TaoTruyen />} />
+        <Route path="login" element={<Dangnhap />} />
       </Routes>
     </Router>
   );
