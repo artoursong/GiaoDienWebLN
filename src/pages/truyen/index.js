@@ -10,6 +10,7 @@ import SaveButton from "./components/SaveButton";
 import Description from "./components/Description";
 import Chapters from "./components/Chapters";
 import Suggestions from "./components/Suggestions";
+import Comment from "./components/Comment";
 
 const BookDetailPage = () => {
   const { id } = useParams();
@@ -128,9 +129,10 @@ const BookDetailPage = () => {
             </div>
           </SectionDivider>
           <Description desc={book.mo_ta} />
-          <div className="flex items-start gap-10 pb-20">
+          <div className="flex items-start gap-10 pt-10">
             <div className="w-[70%]">
               <Chapters volumes={book.volumes} />
+              <Comment idBook={id} />
             </div>
             <div className="sticky top-2 w-[30%]">
               <Suggestions books={book.same_Category} />

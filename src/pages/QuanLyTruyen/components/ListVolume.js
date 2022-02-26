@@ -2,9 +2,22 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FaPencilAlt } from "react-icons/fa";
+import { BsTrash } from "react-icons/bs";
+import bookService from "api/truyenAPI";
 
-const ListVolume = ({ volume }) => {
+const ListVolume = ({ volume, setTruyen }) => {
   const [hide, setHide] = useState(false);
+  const handleDeleteVolume = async (id) => {
+    const response = await bookService.deleteVolume(id);
+
+    if (response.status === 200 && response.data) {
+      setTruyen((prev) => ({
+        ...prev,
+        volumes: prev.volumes.filter((volume) => volume.id !== id),
+      }));
+    }
+  };
+
   return (
     <ul className="text-[#cbdff3]">
       <li className="block py-2">
@@ -26,6 +39,11 @@ const ListVolume = ({ volume }) => {
             <Link to={`volume/${volume.id}/create`}>
               <AiOutlinePlus className="text-base transition-all hover:text-blue-500" />
             </Link>
+
+            <BsTrash
+              onClick={() => handleDeleteVolume(volume.id)}
+              className="text-lg hover:text-blue-500"
+            />
           </div>
         </div>
         <ul

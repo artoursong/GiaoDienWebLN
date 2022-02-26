@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import { authService } from "api/auth";
 import validationSchema from "./formik/validationSchema";
@@ -6,6 +6,7 @@ import initialValues from "./formik/initialValues";
 import Container from "components/Container";
 import { useAuth } from "context/authContext";
 import bookService from "api/truyenAPI";
+import ImageUpload from "./ImageUpload";
 
 const genres = [
   { id: 1, name: "Action" },
@@ -19,18 +20,31 @@ const genres = [
 
 const TaoTruyen = () => {
   const [authState] = useAuth();
+  const [uploadImg, setUploadImg] = useState({ url: "", file: null });
+
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
+      let imageURL = null;
+      if (uploadImg.file) {
+        const response = await bookService.uploadImage(uploadImg.file);
+
+        if (response.data) {
+          imageURL = response.data.secure_url;
+        }
+      }
+
       const response = await bookService.createBook({
         ...values,
+        image: imageURL,
         iD_User: authState.user.iD_User,
       });
       if (response.status === 200) {
         setSubmitting(false);
         alert("Da them truyen");
         resetForm();
+        setUploadImg({ url: "", file: null });
       }
     },
   });
@@ -49,11 +63,11 @@ const TaoTruyen = () => {
     <div className="py-[40px]">
       <Container>
         <div>
-          <h1 className="text-center font-bold text-3xl mb-5">Đăng truyện</h1>
+          <h1 className="mb-5 text-center text-3xl font-bold">Đăng truyện</h1>
           <div>
             <form onSubmit={handleSubmit}>
-              <div className="flex items-stretch mb-4">
-                <label htmlFor="name" className="w-[150px] font-medium text-lg">
+              <div className="mb-4 grid grid-cols-[150px_minmax(200px,_1fr)]">
+                <label htmlFor="name" className="w-[150px] text-lg font-medium">
                   Tiêu đề
                 </label>
                 <div className="w-full">
@@ -62,7 +76,7 @@ const TaoTruyen = () => {
                     name="name"
                     value={values.name}
                     onChange={handleChange}
-                    className={`w-full border rounded-md py-2 px-4 block ${
+                    className={`block w-full rounded-md border py-2 px-4 ${
                       touched.name && errors.name
                         ? "border-red-500"
                         : "border-gray-300"
@@ -71,15 +85,21 @@ const TaoTruyen = () => {
                     onBlur={handleBlur}
                   />
                   {touched.name && errors.name ? (
-                    <span className="text-red-500 italic">{errors.name}</span>
+                    <span className="italic text-red-500">{errors.name}</span>
                   ) : null}
                 </div>
               </div>
+              <div>
+                <ImageUpload
+                  setUploadImage={setUploadImg}
+                  uploadImage={uploadImg}
+                />
+              </div>
 
-              <div className="flex items-stretch mb-4">
+              <div className="mb-4 grid grid-cols-[150px_minmax(200px,_1fr)]">
                 <label
                   htmlFor="ten_khac"
-                  className="w-[150px] font-medium text-lg"
+                  className="w-[150px] text-lg font-medium"
                 >
                   Tiêu đề khác
                 </label>
@@ -89,7 +109,7 @@ const TaoTruyen = () => {
                     name="ten_khac"
                     value={values.ten_khac}
                     onChange={handleChange}
-                    className={`w-full border rounded-md py-2 px-4 block ${
+                    className={`block w-full rounded-md border py-2 px-4 ${
                       touched.ten_khac && errors.ten_khac
                         ? "border-red-500"
                         : "border-gray-300"
@@ -99,14 +119,14 @@ const TaoTruyen = () => {
                   />
                 </div>
                 {touched.ten_khac && errors.ten_khac ? (
-                  <span className="text-red-500 italic">{errors.ten_khac}</span>
+                  <span className="italic text-red-500">{errors.ten_khac}</span>
                 ) : null}
               </div>
 
-              <div className="flex items-stretch mb-4">
+              <div className="mb-4 grid grid-cols-[150px_minmax(200px,_1fr)]">
                 <label
                   htmlFor="author"
-                  className="w-[150px] font-medium text-lg"
+                  className="w-[150px] text-lg font-medium"
                 >
                   Tác giả
                 </label>
@@ -115,7 +135,7 @@ const TaoTruyen = () => {
                     type="text"
                     name="author"
                     onChange={handleChange}
-                    className={`w-full border rounded-md py-2 px-4 block ${
+                    className={`block w-full rounded-md border py-2 px-4 ${
                       touched.author && errors.author
                         ? "border-red-500"
                         : "border-gray-300"
@@ -124,15 +144,15 @@ const TaoTruyen = () => {
                     onBlur={handleBlur}
                   />
                   {touched.author && errors.author ? (
-                    <span className="text-red-500 italic">{errors.author}</span>
+                    <span className="italic text-red-500">{errors.author}</span>
                   ) : null}
                 </div>
               </div>
 
-              <div className="flex items-stretch mb-4">
+              <div className="mb-4 grid grid-cols-[150px_minmax(200px,_1fr)]">
                 <label
                   htmlFor="hoa_si"
-                  className="w-[150px] font-medium text-lg"
+                  className="w-[150px] text-lg font-medium"
                 >
                   Họa sĩ
                 </label>
@@ -141,7 +161,7 @@ const TaoTruyen = () => {
                     type="text"
                     name="hoa_si"
                     onChange={handleChange}
-                    className={`w-full border rounded-md py-2 px-4 block ${
+                    className={`block w-full rounded-md border py-2 px-4 ${
                       touched.hoa_si && errors.hoa_si
                         ? "border-red-500"
                         : "border-gray-300"
@@ -150,17 +170,17 @@ const TaoTruyen = () => {
                     onBlur={handleBlur}
                   />
                   {touched.hoa_si && errors.hoa_si ? (
-                    <span className="text-red-500 italic">{errors.hoa_si}</span>
+                    <span className="italic text-red-500">{errors.hoa_si}</span>
                   ) : null}
                 </div>
               </div>
 
-              <div className="flex items-stretch mb-4">
-                <label className="w-[150px] font-medium text-lg">
+              <div className="mb-4 grid grid-cols-[150px_minmax(200px,_1fr)]">
+                <label className="w-[150px] text-lg font-medium">
                   Thể loại
                 </label>
                 <div className="w-full">
-                  <div className="flex gap-5 w-full">
+                  <div className="flex w-full gap-5">
                     {genres.map((genre) => (
                       <div key={genre.id}>
                         <input
@@ -177,17 +197,17 @@ const TaoTruyen = () => {
                     ))}
                   </div>
                   {touched.categories && errors.categories ? (
-                    <span className="text-red-500 italic">
+                    <span className="italic text-red-500">
                       {errors.categories}
                     </span>
                   ) : null}
                 </div>
               </div>
 
-              <div className="flex items-stretch mb-4">
+              <div className="mb-4 grid grid-cols-[150px_minmax(200px,_1fr)]">
                 <label
                   htmlFor="mo_ta"
-                  className="w-[150px] font-medium text-lg"
+                  className="w-[150px] text-lg font-medium"
                 >
                   Tóm tắt
                 </label>
@@ -197,7 +217,7 @@ const TaoTruyen = () => {
                     id="mo_ta"
                     onChange={handleChange}
                     rows="10"
-                    className={`w-full border rounded-md py-2 px-4 block ${
+                    className={`block w-full rounded-md border py-2 px-4 ${
                       touched.mo_ta && errors.mo_ta
                         ? "border-red-500"
                         : "border-gray-300"
@@ -205,14 +225,14 @@ const TaoTruyen = () => {
                     onBlur={handleBlur}
                   ></textarea>
                   {touched.mo_ta && errors.mo_ta ? (
-                    <span className="text-red-500 italic">{errors.mo_ta}</span>
+                    <span className="italic text-red-500">{errors.mo_ta}</span>
                   ) : null}
                 </div>
               </div>
 
               <div className="text-right">
                 <button
-                  className="rounded-md px-8 py-2 text-lg font-semibold bg-blue-500 text-white transition-all hover:bg-blue-600 disabled:opacity-60 disabled:cursor-wait"
+                  className="rounded-md bg-blue-500 px-8 py-2 text-lg font-semibold text-white transition-all hover:bg-blue-600 disabled:cursor-wait disabled:opacity-60"
                   type="submit"
                   disabled={isSubmitting}
                 >

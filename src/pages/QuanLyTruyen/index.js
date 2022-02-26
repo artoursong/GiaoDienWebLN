@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
+import { useParams, Outlet, Link } from "react-router-dom";
+
 import Container from "components/Container";
 import PageHeader from "components/PageHeader";
 import SectionDivider from "components/Section/SectionDivider";
-import { useParams } from "react-router-dom";
-import { Outlet } from "react-router-dom";
-import { useTruyen } from "context/truyenContext";
 import bookService from "api/truyenAPI";
 import ListVolume from "./components/ListVolume";
-import { Link } from "react-router-dom";
+
+import { useTruyen } from "context/truyenContext";
 
 const QuanLyTruyen = () => {
   const params = useParams();
@@ -35,7 +35,7 @@ const QuanLyTruyen = () => {
         <div>
           <PageHeader title="Quản lý truyện" />
           <SectionDivider>
-            <div className="grid grid-cols-[350px_minmax(900px,1000px)] items-start gap-20 pt-20">
+            <div className="grid grid-cols-[max(400px)_minmax(900px,1000px)] items-start gap-20 pt-20">
               <div className="w-full rounded-md border border-gray-500 p-4">
                 <Link
                   to="create"
@@ -45,7 +45,11 @@ const QuanLyTruyen = () => {
                 </Link>
                 {!isLoading && truyen
                   ? truyen.volumes.map((volume) => (
-                      <ListVolume volume={volume} key={volume.id} />
+                      <ListVolume
+                        volume={volume}
+                        key={volume.id}
+                        setTruyen={setTruyen}
+                      />
                     ))
                   : null}
               </div>

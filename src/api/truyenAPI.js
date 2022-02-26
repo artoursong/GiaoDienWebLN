@@ -1,3 +1,4 @@
+import axios from "axios";
 import { khachAPI } from "./index";
 
 const bookService = {
@@ -61,6 +62,18 @@ const bookService = {
   },
   deleteBookmark: (data) => {
     return khachAPI.post(`bookmark/deletebookmark`, data);
+  },
+  uploadImage: (file) => {
+    return axios.post(
+      `https://api.cloudinary.com/v1_1/dgtv15ojw/image/upload`,
+      file
+    );
+  },
+  deleteVolume: (id) => {
+    return khachAPI.delete(`/volume/${id}`);
+  },
+  getComment: (idBook) => {
+    return khachAPI.get(`comment/commentofbook/${idBook}`);
   },
 };
 
