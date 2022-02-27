@@ -85,6 +85,19 @@ const bookService = {
   postComment: (data) => {
     return khachAPI.post("comment", data);
   },
+  getKeSach: (id) => {
+    return khachAPI.get(`follow/${id}`);
+  },
+  getBookmarkList: (id) => {
+    return khachAPI.get(`bookmark/${id}`);
+  },
+  getFollow: (id) => {
+    return khachAPI.get(`follow/${id}`);
+  },
+  likeBook: (data) => {
+    console.log(data);
+    return khachAPI.post("follow", data);
+  },
 };
 
 export default bookService;

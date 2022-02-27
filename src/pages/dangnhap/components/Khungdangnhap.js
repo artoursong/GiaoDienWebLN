@@ -1,36 +1,36 @@
-import Container from '../../../components/Container';
-import { authService } from 'api/auth';
-import { useState } from 'react';
-import { useAuth } from 'context/authContext';
-import { useNavigate } from 'react-router-dom';
+import Container from "../../../components/Container";
+import { authService } from "api/auth";
+import { useState } from "react";
+import { useAuth } from "context/authContext";
+import { useNavigate } from "react-router-dom";
 
 const Khungdangnhap = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPass] = useState('');
-  const [error, setError] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPass] = useState("");
+  const [error, setError] = useState("");
   const [, setAuthState] = useAuth();
   const navigate = useNavigate();
 
-  const onSubmit = e => {
-    setError('');
+  const onSubmit = (e) => {
+    setError("");
     const user = {
       username: username,
       password: password,
     };
     authService
       .login(user)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) {
           setAuthState({
             isAuth: true,
             user: res.data.loginData,
           });
 
-          localStorage.setItem('token', res.data.token);
-          navigate('/', { replace: true });
+          localStorage.setItem("token", res.data.token);
+          navigate("/", { replace: true });
         }
       })
-      .catch(err => setError('Sai tai khoan hoac mat khau!'));
+      .catch((err) => setError("Sai tai khoan hoac mat khau!"));
 
     e.preventDefault();
   };
@@ -40,71 +40,71 @@ const Khungdangnhap = () => {
       <Container>
         <form
           onSubmit={onSubmit}
-          className='max-w-[700px] mx-auto mt-28 border border-gray-200 rounded-md'
+          className="mx-auto mt-28 max-w-[700px] rounded-md border border-gray-200"
         >
-          <div className='px-4 py-2 bg-gray-100 border-b border-gray-200'>
+          <div className="border-b border-gray-200 bg-gray-100 px-4 py-2">
             Đăng nhập
           </div>
-          <div className='p-4'>
-            <div className='max-w-[550px] mx-auto'>
+          <div className="p-4">
+            <div className="mx-auto max-w-[550px]">
               {error ? (
-                <p className='text-center text-red-500'>{error}</p>
+                <p className="text-center text-red-500">{error}</p>
               ) : null}
-              <div className='w-full flex gap-8 mb-5 items-center'>
-                <label className='w-[40%] inline-block text-right'>
+              <div className="mb-5 flex w-full items-center gap-8">
+                <label className="inline-block w-[40%] text-right">
                   Tên đăng nhập hoặc Email
                 </label>
-                <div className='w-[55%]'>
+                <div className="w-[55%]">
                   <input
-                    type='text'
-                    className='outline-none block border px-2 py-1 border-gray-200 rounded-md w-full'
-                    onChange={event => {
+                    type="text"
+                    className="block w-full rounded-md border border-gray-200 px-2 py-1 outline-none"
+                    onChange={(event) => {
                       setUsername(event.target.value);
                     }}
                     value={username}
                   />
                 </div>
               </div>
-              <div className='w-full flex gap-8 mb-5 items-center'>
-                <label className='w-[40%] inline-block text-right'>
+              <div className="mb-5 flex w-full items-center gap-8">
+                <label className="inline-block w-[40%] text-right">
                   Mật khẩu
                 </label>
-                <div className='w-[55%]'>
+                <div className="w-[55%]">
                   <input
-                    type='password'
-                    className='outline-none block border border-gray-200 rounded-md w-full px-2 py-1'
-                    onChange={event => {
+                    type="password"
+                    className="block w-full rounded-md border border-gray-200 px-2 py-1 outline-none"
+                    onChange={(event) => {
                       setPass(event.target.value);
                     }}
                     value={password}
                   />
                 </div>
               </div>
-              <div className='w-full flex gap-8 mb-5 items-center'>
-                <label className='w-[40%] inline-block text-right'>
+              <div className="mb-5 flex w-full items-center gap-8">
+                <label className="inline-block w-[40%] text-right">
                   Ghi nhớ
                 </label>
-                <div className='w-[55%]'>
-                  <input type='checkbox' />
+                <div className="w-[55%]">
+                  <input type="checkbox" />
                 </div>
               </div>
-              <div className='w-full flex gap-8 mb-5 items-center'>
-                <div class='w-[55%] ml-auto'>
+              <div className="mb-5 flex w-full items-center gap-8">
+                <div className="ml-auto w-[55%]">
                   <button
-                    type='submit'
-                    className='px-4 py-1 bg-blue-500 text-white'
+                    type="submit"
+                    className="bg-blue-500 px-4 py-1 text-white"
                   >
                     Login
                   </button>
-                  <span className='text-blue-400 cursor-pointer hover:underline ml-7'>
+                  <span className="ml-7 cursor-pointer text-blue-400 hover:underline">
                     Quên mật khẩu?
                   </span>
                 </div>
               </div>
-              <div className='w-full flex gap-8 items-center'>
-                <div className='w-[55%] ml-auto'>
-                  <span>Bạn đã có tài khoản?</span>{' '}
-                  <span className='text-blue-400 cursor-pointer hover:underline'>
+              <div className="flex w-full items-center gap-8">
+                <div className="ml-auto w-[55%]">
+                  <span>Bạn đã có tài khoản?</span>{" "}
+                  <span className="cursor-pointer text-blue-400 hover:underline">
                     Đăng kí
                   </span>
                 </div>

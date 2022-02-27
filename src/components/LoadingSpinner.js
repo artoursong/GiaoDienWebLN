@@ -3,7 +3,7 @@ const LoadingSpinner = ({ size = 10 }) => {
 
   return (
     <svg
-      className={`block animate-spin text-blue-700 ${_size} mx-auto`}
+      className={`block animate-spin text-cyan-700 ${_size} mx-auto`}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"

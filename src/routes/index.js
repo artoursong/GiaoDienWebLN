@@ -15,6 +15,8 @@ import { TruyenProvider } from "context/truyenContext";
 import Profile from "pages/User/components/Profile";
 import ChangePassword from "pages/User/components/ChangePassword";
 import UserNovels from "pages/User/components/PostedNovels";
+import BookTable from "pages/User/components/BookTable";
+import BookmarkTable from "pages/User/components/BookmarkTable";
 
 const AppRouter = () => {
   return (
@@ -59,6 +61,8 @@ const AppRouter = () => {
               </ProtectedRoute>
             }
           >
+            <Route path="kesach" element={<BookTable />} />
+            <Route path="bookmark" element={<BookmarkTable />} />
             <Route path="profile" element={<Profile />} />
             <Route path="password" element={<ChangePassword />} />
             <Route path="novels" element={<UserNovels />} />

@@ -6,31 +6,37 @@ const menu = [
   {
     id: 1,
     title: "Sáng tác",
+    link: "/",
   },
 
   {
     id: 2,
-    title: "Convert",
+    title: "Kệ sách",
+    link: "/user/kesach",
   },
 
   {
     id: 3,
     title: "Xuất bản",
+    link: "/",
   },
 
   {
     id: 4,
     title: "Thảo luận",
+    link: "/",
   },
 
   {
     id: 5,
     title: "Danh sách",
+    link: "/",
   },
 
   {
     id: 6,
     title: "Hướng dẫn",
+    link: "/",
   },
 ];
 
@@ -61,11 +67,13 @@ const Header = () => {
           <nav>
             <ul className="flex gap-10">
               {menu.map((item) => (
-                <li
-                  key={item.id}
-                  className="relative cursor-pointer font-semibold text-gray-200 transition-all after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:w-full after:translate-x-[-80px] after:transform after:bg-blue-600 after:opacity-0 after:transition-all after:duration-200 hover:text-gray-300 hover:after:translate-x-0 hover:after:opacity-100"
-                >
-                  {item.title}
+                <li key={item.id}>
+                  <Link
+                    to={item.link}
+                    className="relative cursor-pointer font-semibold text-gray-200 transition-all after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:w-full after:translate-x-[-80px] after:transform after:bg-blue-600 after:opacity-0 after:transition-all after:duration-200 hover:text-gray-300 hover:after:translate-x-0 hover:after:opacity-100"
+                  >
+                    {item.title}
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -3,7 +3,7 @@ import { BsStar, BsEye } from "react-icons/bs";
 import { MdUpdate } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { vi } from "date-fns/locale";
-import { formatDistance, formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow } from "date-fns";
 
 import SectionDivider from "components/Section/SectionDivider";
 import bookService from "api/truyenAPI";
@@ -48,7 +48,7 @@ const BookDetailPage = () => {
                 />
                 <div className="absolute -bottom-12 flex w-full items-center gap-2">
                   <div className="w-1/2">
-                    <LikeButton />
+                    <LikeButton id={id} />
                   </div>
                   <div className="w-1/2">
                     <SaveButton />
