@@ -86,7 +86,7 @@ const bookService = {
     return khachAPI.post("comment", data);
   },
   getKeSach: (id) => {
-    return khachAPI.get(`follow/${id}`);
+    return khachAPI.get(`follow/allfollow/${id}`);
   },
   getBookmarkList: (id) => {
     return khachAPI.get(`bookmark/${id}`);
@@ -97,6 +97,22 @@ const bookService = {
   likeBook: (data) => {
     console.log(data);
     return khachAPI.post("follow", data);
+  },
+  getReportList: () => {
+    return khachAPI.get("ban");
+  },
+
+  banUser: (id) => {
+    return khachAPI.post(`ban/banuser/${id}`);
+  },
+  getBannedList: () => {
+    return khachAPI.get("ban/banned");
+  },
+  unbanUser: (id) => {
+    return khachAPI.post(`ban/unban/${id}`);
+  },
+  getNewBooks: () => {
+    return khachAPI.get("book/newbook");
   },
 };
 

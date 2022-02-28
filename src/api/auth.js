@@ -20,6 +20,9 @@ const authService = {
   changePassword: (data) => {
     return khachAPI.put("user/changepass", data);
   },
+  register: (data) => {
+    return khachAPI.post("user", data);
+  },
 };
 
 export { authService };

@@ -2,7 +2,7 @@ import Container from "../../../components/Container";
 import { authService } from "api/auth";
 import { useState } from "react";
 import { useAuth } from "context/authContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Khungdangnhap = () => {
   const [username, setUsername] = useState("");
@@ -104,9 +104,12 @@ const Khungdangnhap = () => {
               <div className="flex w-full items-center gap-8">
                 <div className="ml-auto w-[55%]">
                   <span>Bạn đã có tài khoản?</span>{" "}
-                  <span className="cursor-pointer text-blue-400 hover:underline">
+                  <Link
+                    to="/dang-ky"
+                    className="cursor-pointer text-blue-400 hover:underline"
+                  >
                     Đăng kí
-                  </span>
+                  </Link>
                 </div>
               </div>
             </div>
