@@ -1,7 +1,11 @@
 import { useRef } from "react";
 import ImagePlaceholder from "./ImagePlaceholder";
 
-const ImageUpload = ({ setUploadImage, uploadImage }) => {
+const ImageUpload = ({
+  setUploadImage,
+  uploadImage,
+  labelColor = "text-black",
+}) => {
   const inputImageRef = useRef();
 
   const handleResetUploadImage = () => {
@@ -31,8 +35,10 @@ const ImageUpload = ({ setUploadImage, uploadImage }) => {
   };
   return (
     <div className="my-5">
-      <div className="grid grid-cols-[150px_minmax(200px,_1fr)]">
-        <label className="block w-[150px] text-lg font-medium">Hình ảnh</label>
+      <div>
+        <label className={`block w-[150px] text-lg font-medium ${labelColor}`}>
+          Hình ảnh
+        </label>
         <div className="mt-1 flex items-center">
           <div className="w-[150px] rounded-full bg-gray-100">
             {/* <svg

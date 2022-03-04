@@ -13,13 +13,9 @@ const Chapters = ({ volumes }) => {
             <h3 className="mb-4 rounded-md bg-gray-100 bg-opacity-10 py-2 px-4 text-xl text-[#c9e1f8]">
               {volume.name}
             </h3>
-            <div className="flex items-start gap-5">
-              <div className="max-w-[200px]">
-                <img
-                  src="https://images-na.ssl-images-amazon.com/images/I/715RXAmrh1L.jpg"
-                  alt="img2"
-                  className="overflow-hidden rounded-md"
-                />
+            <div className="grid grid-cols-[200px_minmax(200px,_1fr)] gap-5">
+              <div className="w-full overflow-hidden rounded-md">
+                <img src={volume.image} alt="img2" className="w-full" />
               </div>
               {volume.listchapter.length > 0 ? (
                 <ul className="max-h-[280px] w-full overflow-auto pr-1">

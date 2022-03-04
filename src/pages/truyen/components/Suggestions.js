@@ -10,7 +10,7 @@ const Suggestions = ({ books }) => {
       {books.length > 0 ? (
         <ul>
           {books.map((book) => (
-            <li className="mb-4 last:mb-0">
+            <li key={book.name} className="mb-4 last:mb-0">
               <div className="grid grid-cols-[100px_minmax(200px,_1fr)] gap-5">
                 <img
                   src={book.image}

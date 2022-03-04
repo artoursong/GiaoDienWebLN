@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { BsStar, BsEye } from "react-icons/bs";
 import { MdUpdate } from "react-icons/md";
 import { useParams } from "react-router-dom";
+import { vi } from "date-fns/locale";
+import { formatDistanceToNow } from "date-fns";
 
 import SectionDivider from "components/Section/SectionDivider";
 import bookService from "api/truyenAPI";
@@ -46,7 +48,7 @@ const BookDetailPage = () => {
                 />
                 <div className="absolute -bottom-12 flex w-full items-center gap-2">
                   <div className="w-1/2">
-                    <LikeButton />
+                    <LikeButton id={id} />
                   </div>
                   <div className="w-1/2">
                     <SaveButton />
@@ -115,7 +117,12 @@ const BookDetailPage = () => {
                       <MdUpdate className="mr-2 text-2xl" />
                       Cập nhật
                     </h4>
-                    <span className="text-xl text-[#c9e1f8]">2 giờ trước</span>
+                    <span className="text-xl text-[#c9e1f8]">
+                      {formatDistanceToNow(new Date(book.update_date), {
+                        locale: vi,
+                        addSuffix: true,
+                      })}
+                    </span>
                   </div>
                   <div className="flex flex-col items-center">
                     <h4 className="mb-1 flex items-center text-lg font-semibold text-[#c9e1f8]">

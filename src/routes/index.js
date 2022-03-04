@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Home from "../pages/home";
 import User from "../pages/User";
 import Danhsach from "../pages/danhsach";
@@ -15,6 +20,14 @@ import { TruyenProvider } from "context/truyenContext";
 import Profile from "pages/User/components/Profile";
 import ChangePassword from "pages/User/components/ChangePassword";
 import UserNovels from "pages/User/components/PostedNovels";
+import BookTable from "pages/User/components/BookTable";
+import BookmarkTable from "pages/User/components/BookmarkTable";
+import AdminLayout from "components/Layout/AdminLayout";
+import AdminQuanLyTruyen from "pages/Admin/QuanLyTruyen";
+import QuanLyUser from "pages/Admin/QuanLyUser";
+import ReportedUsers from "pages/Admin/components/ReportedUsers";
+import BannedUser from "pages/Admin/components/BannedUser";
+import DangKy from "pages/dangky";
 
 const AppRouter = () => {
   return (
@@ -28,9 +41,11 @@ const AppRouter = () => {
           <Route
             path="manage/:id"
             element={
-              <TruyenProvider>
-                <QuanLyTruyen />
-              </TruyenProvider>
+              <ProtectedRoute isPrivate={true}>
+                <TruyenProvider>
+                  <QuanLyTruyen />
+                </TruyenProvider>
+              </ProtectedRoute>
             }
           >
             <Route path="create" element={<FormTaoTap mode={"create"} />} />
@@ -57,17 +72,36 @@ const AppRouter = () => {
               </ProtectedRoute>
             }
           >
+            <Route path="kesach" element={<BookTable />} />
+            <Route path="bookmark" element={<BookmarkTable />} />
             <Route path="profile" element={<Profile />} />
             <Route path="password" element={<ChangePassword />} />
             <Route path="novels" element={<UserNovels />} />
           </Route>
-          <Route path="login" element={<Dangnhap />} />
+
           {/* <Route path="/user" element={<UserLayout/>}>
                     <Route index element={<User/>}/>
                     <Route path="edit" element={<Edit/>}/>
                 </Route> */}
         </Route>
         <Route path="dangtruyen" element={<TaoTruyen />} />
+        <Route path="login" element={<Dangnhap />} />
+        <Route path="dang-ky" element={<DangKy />} />
+        <Route
+          path="admin"
+          element={
+            <ProtectedRoute isPrivate={true}>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="user" element={<QuanLyUser />}>
+            <Route path="reports" element={<ReportedUsers />} />
+            <Route path="ban" element={<BannedUser />} />
+          </Route>
+          <Route index element={<div>Hello</div>} />
+          <Route path="truyen" element={<AdminQuanLyTruyen />} />
+        </Route>
       </Routes>
     </Router>
   );

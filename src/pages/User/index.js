@@ -9,11 +9,11 @@ const User = () => {
     <SectionDivider>
       <Container size="max-w-[1200px]">
         <PageHeader title="Trang cá nhân" />
-        <div className="flex items-start gap-10">
-          <div className="flex max-w-[220px] flex-1 flex-col gap-4">
+        <div className="grid grid-cols-[300px_minmax(900px,_1fr)] gap-5">
+          <div className="flex flex-col gap-4 p-2">
             <UserNav />
           </div>
-          <div className="w-full flex-1">
+          <div className="w-full">
             <Outlet />
           </div>
         </div>

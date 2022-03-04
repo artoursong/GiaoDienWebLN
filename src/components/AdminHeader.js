@@ -5,42 +5,18 @@ import { useAuth } from "context/authContext";
 const menu = [
   {
     id: 1,
-    title: "Sáng tác",
-    link: "/",
+    title: "Quản lý truyện",
+    link: "/admin/truyen",
   },
 
   {
     id: 2,
-    title: "Kệ sách",
-    link: "/user/kesach",
-  },
-
-  {
-    id: 3,
-    title: "Xuất bản",
-    link: "/",
-  },
-
-  {
-    id: 4,
-    title: "Thảo luận",
-    link: "/",
-  },
-
-  {
-    id: 5,
-    title: "Danh sách",
-    link: "/",
-  },
-
-  {
-    id: 6,
-    title: "Hướng dẫn",
-    link: "/",
+    title: "Quản lý thành viên",
+    link: "/admin/user",
   },
 ];
 
-const Header = () => {
+const AdminHeader = () => {
   const [authState] = useAuth();
 
   const navigate = useNavigate();
@@ -58,7 +34,7 @@ const Header = () => {
             <Link to="/">
               <div className="w-[200px]">
                 <img
-                  src="https://res.cloudinary.com/dlbkvfo8l/image/upload/v1644699196/output-onlinepngtools_1_toiobk.png"
+                  src="https://res.cloudinary.com/dlbkvfo8l/image/upload/v1646023178/output-onlinepngtools_3_jmkaqj.png"
                   alt="logo"
                 />
               </div>
@@ -70,7 +46,7 @@ const Header = () => {
                 <li key={item.id}>
                   <Link
                     to={item.link}
-                    className="relative cursor-pointer font-semibold text-gray-200 transition-all after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:w-full after:translate-x-[-80px] after:transform after:bg-blue-600 after:opacity-0 after:transition-all after:duration-200 hover:text-gray-300 hover:after:translate-x-0 hover:after:opacity-100"
+                    className="relative cursor-pointer font-semibold text-gray-500 transition-all after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:w-full after:translate-x-[-80px] after:transform after:bg-gray-300 after:opacity-0 after:transition-all after:duration-200 hover:text-gray-600 hover:after:translate-x-0 hover:after:opacity-100"
                   >
                     {item.title}
                   </Link>
@@ -78,11 +54,10 @@ const Header = () => {
               ))}
             </ul>
           </nav>
-
           <div>
             {!authState.user ? (
               <button
-                className="cursor-pointer overflow-hidden rounded-md bg-white bg-opacity-5 px-4 py-2 font-bold text-white backdrop-blur-sm transition-all hover:bg-opacity-10"
+                className="cursor-pointer overflow-hidden rounded-md bg-blue-600 px-4 py-2 font-bold text-white backdrop-blur-sm transition-all hover:bg-opacity-90"
                 onClick={() => navigate("/login")}
               >
                 Đăng nhập
@@ -92,12 +67,10 @@ const Header = () => {
                 className="group relative ml-5 flex cursor-pointer items-center gap-5 py-2 font-bold"
                 onClick={() => navigate("/user")}
               >
-                <span className="text-light-gray">
-                  {authState.user.username}
-                </span>
+                {authState.user.username}
                 <button
                   onClick={logout}
-                  className="cursor-pointer overflow-hidden rounded-md bg-white bg-opacity-5 px-4 py-2 font-bold text-white backdrop-blur-sm transition-all hover:bg-opacity-10"
+                  className="cursor-pointer overflow-hidden rounded-md bg-blue-600 px-4 py-2 font-bold text-white backdrop-blur-sm transition-all hover:bg-opacity-90"
                 >
                   Đăng xuất
                 </button>
@@ -110,4 +83,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default AdminHeader;

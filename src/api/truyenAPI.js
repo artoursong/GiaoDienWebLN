@@ -72,8 +72,47 @@ const bookService = {
   deleteVolume: (id) => {
     return khachAPI.delete(`/volume/${id}`);
   },
-  getComment: (idBook) => {
-    return khachAPI.get(`comment/commentofbook/${idBook}`);
+  getComment: (data) => {
+    return khachAPI.post(`comment/commentofbook`, data);
+  },
+
+  deleteChapter: (id) => {
+    return khachAPI.delete(`chapter/${id}`);
+  },
+  deleteBook: (id) => {
+    return khachAPI.delete(`book/${id}`);
+  },
+  postComment: (data) => {
+    return khachAPI.post("comment", data);
+  },
+  getKeSach: (id) => {
+    return khachAPI.get(`follow/allfollow/${id}`);
+  },
+  getBookmarkList: (id) => {
+    return khachAPI.get(`bookmark/${id}`);
+  },
+  getFollow: (id) => {
+    return khachAPI.get(`follow/${id}`);
+  },
+  likeBook: (data) => {
+    console.log(data);
+    return khachAPI.post("follow", data);
+  },
+  getReportList: () => {
+    return khachAPI.get("ban");
+  },
+
+  banUser: (id) => {
+    return khachAPI.post(`ban/banuser/${id}`);
+  },
+  getBannedList: () => {
+    return khachAPI.get("ban/banned");
+  },
+  unbanUser: (id) => {
+    return khachAPI.post(`ban/unban/${id}`);
+  },
+  getNewBooks: () => {
+    return khachAPI.get("book/newbook");
   },
 };
 

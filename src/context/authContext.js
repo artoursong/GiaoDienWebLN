@@ -7,6 +7,7 @@ const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState({
     isAuth: false,
     user: null,
+    like: [],
   });
 
   const value = [authState, setAuthState];
