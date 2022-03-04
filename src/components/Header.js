@@ -1,60 +1,47 @@
+import { Link } from "react-router-dom";
 import Container from "./Container";
-import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "context/authContext";
+import HeaderUser from "./HeaderUser";
+import HeaderCategories from "./HeaderCategories";
 
 const menu = [
   {
     id: 1,
-    title: "Sáng tác",
-    link: "/",
+    title: "Đăng truyện",
+    link: "/dangtruyen",
+    isPrivate: true,
   },
 
   {
     id: 2,
     title: "Kệ sách",
     link: "/user/kesach",
+    isPrivate: true,
   },
 
   {
     id: 3,
     title: "Xuất bản",
     link: "/",
+    isPrivate: false,
   },
 
   {
     id: 4,
     title: "Thảo luận",
     link: "/",
-  },
-
-  {
-    id: 5,
-    title: "Danh sách",
-    link: "/",
-  },
-
-  {
-    id: 6,
-    title: "Hướng dẫn",
-    link: "/",
+    isPrivate: false,
   },
 ];
 
 const Header = () => {
   const [authState] = useAuth();
 
-  const navigate = useNavigate();
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    window.location.reload();
-  };
-
   return (
     <div>
       <Container>
-        <div className="flex items-center justify-between py-4">
-          <h1 className="cursor-pointer text-[40px] font-semibold text-green-700">
+        <div className="flex items-center py-4">
+          <h1 className="mr-10 cursor-pointer">
             <Link to="/">
               <div className="w-[200px]">
                 <img
@@ -69,40 +56,21 @@ const Header = () => {
               {menu.map((item) => (
                 <li key={item.id}>
                   <Link
-                    to={item.link}
-                    className="relative cursor-pointer font-semibold text-gray-200 transition-all after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:w-full after:translate-x-[-80px] after:transform after:bg-blue-600 after:opacity-0 after:transition-all after:duration-200 hover:text-gray-300 hover:after:translate-x-0 hover:after:opacity-100"
+                    to={
+                      item.isPrivate && authState.isAuth ? item.link : "/login"
+                    }
+                    className="relative cursor-pointer font-semibold text-gray-200 transition-all after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:w-0 after:bg-blue-600 after:transition-all after:duration-200 hover:text-gray-300 hover:after:w-full"
                   >
                     {item.title}
                   </Link>
                 </li>
               ))}
+              <HeaderCategories />
             </ul>
           </nav>
 
-          <div>
-            {!authState.user ? (
-              <button
-                className="cursor-pointer overflow-hidden rounded-md bg-white bg-opacity-5 px-4 py-2 font-bold text-white backdrop-blur-sm transition-all hover:bg-opacity-10"
-                onClick={() => navigate("/login")}
-              >
-                Đăng nhập
-              </button>
-            ) : (
-              <div
-                className="group relative ml-5 flex cursor-pointer items-center gap-5 py-2 font-bold"
-                onClick={() => navigate("/user")}
-              >
-                <span className="text-light-gray">
-                  {authState.user.username}
-                </span>
-                <button
-                  onClick={logout}
-                  className="cursor-pointer overflow-hidden rounded-md bg-white bg-opacity-5 px-4 py-2 font-bold text-white backdrop-blur-sm transition-all hover:bg-opacity-10"
-                >
-                  Đăng xuất
-                </button>
-              </div>
-            )}
+          <div className="ml-auto">
+            <HeaderUser authState={authState} />
           </div>
         </div>
       </Container>

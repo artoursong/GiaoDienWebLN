@@ -32,7 +32,7 @@ const BookmarkTable = () => {
         <SectionHeader>Bookmark</SectionHeader>
       </div>
       {isLoading ? (
-        <LoadingSpinner size={10} />
+        <LoadingSpinner size={8} />
       ) : (
         <>
           {bookmarks.length > 0

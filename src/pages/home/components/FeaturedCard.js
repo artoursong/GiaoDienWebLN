@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const FeaturedCard = ({ width = "full", book }) => {
   return (
     <div
-      className={`${width} group relative h-[350px] cursor-pointer overflow-hidden rounded-md border border-gray-50 border-opacity-10`}
+      className={`${width} group relative h-[380px] cursor-pointer overflow-hidden rounded-md border border-gray-50 border-opacity-10`}
     >
       <img
         src={book.image}

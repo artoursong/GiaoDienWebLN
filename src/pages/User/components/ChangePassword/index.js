@@ -52,7 +52,7 @@ const ChangePassword = () => {
     <div className="mt-5 md:col-span-2 md:mt-0">
       <form onSubmit={handleSubmit} method="POST">
         <div className="w-full rounded-md border border-gray-500 p-4">
-          <h2 className="mb-5 text-2xl font-bold text-[#cbdff3]">
+          <h2 className="mb-5 text-2xl font-bold uppercase text-[#cbdff3]">
             Đổi mật khẩu
           </h2>
           <div className="mb-6 max-w-md">
