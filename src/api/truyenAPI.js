@@ -114,6 +114,12 @@ const bookService = {
   getNewBooks: () => {
     return khachAPI.get("book/newbook");
   },
+  searchBookByKeyword: (key) => {
+    return khachAPI.get(`book/findbook/${key}`);
+  },
+  getCategory: () => {
+    return khachAPI.get("category");
+  },
 };
 
 export default bookService;

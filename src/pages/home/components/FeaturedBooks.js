@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { RiMedalFill } from "react-icons/ri";
-
-import Container from "components/Container";
 import SectionDivider from "components/Section/SectionDivider";
-import bookService from "api/truyenAPI";
 import FeaturedCard from "./FeaturedCard";
 import SectionHeader from "components/Section/SectionHeader";
 
@@ -35,19 +31,14 @@ const FeaturedBooks = ({ data }) => {
   return (
     <SectionDivider>
       <div>
-        <div className="flex items-stretch gap-20">
-          {/* {books.length > 0
-              ? books.map((book, index) => (
-                  <Card key={index} book={book} width="w-[calc(20%-16px)]" />
-                ))
-              : "Chưa có truyện"} */}
-          <div className="w-[65%]">
+        <div className="grid grid-cols-[minmax(900px,_1fr)_400px] gap-10">
+          <div>
             <div className="mb-10">
               <SectionHeader>Truyện nổi bật</SectionHeader>
             </div>
 
             <Swiper
-              spaceBetween={25}
+              spaceBetween={30}
               slidesPerView={4}
               onSlideChange={() => console.log("slide change")}
               onSwiper={(swiper) => console.log(swiper)}
@@ -64,7 +55,7 @@ const FeaturedBooks = ({ data }) => {
                 : null}
             </Swiper>
           </div>
-          <div className="w-[35%]">
+          <div>
             <div className="mb-10 flex items-center justify-between">
               <SectionHeader>Top theo dõi</SectionHeader>
               <div className="group relative">

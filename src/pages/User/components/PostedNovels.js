@@ -3,6 +3,7 @@ import bookService from "api/truyenAPI";
 import { useAuth } from "context/authContext";
 import LoadingSpinner from "components/LoadingSpinner";
 import UserNovelCard from "components/UserNovelCard";
+import SectionHeader from "components/Section/SectionHeader";
 
 const UserNovels = () => {
   const [authState] = useAuth();
@@ -33,7 +34,10 @@ const UserNovels = () => {
   };
 
   return (
-    <div>
+    <>
+      <div className="mb-5">
+        <SectionHeader>Truyện đã đăng</SectionHeader>
+      </div>
       {isLoading ? (
         <div className="h-8 w-8">
           <LoadingSpinner size={8} />
@@ -49,7 +53,7 @@ const UserNovels = () => {
           ))}
         </div>
       ) : null}
-    </div>
+    </>
   );
 };
 

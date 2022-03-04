@@ -61,7 +61,7 @@ const Profile = () => {
     <div className="mt-5 md:col-span-2 md:mt-0">
       <form method="POST" onSubmit={handleSubmit}>
         <div className="w-full rounded-md border border-gray-500 p-4">
-          <h2 className="mb-5 text-2xl font-bold text-[#cbdff3]">
+          <h2 className="mb-5 text-2xl font-bold uppercase text-[#cbdff3]">
             Thông tin cá nhân
           </h2>
           <div className="mb-6 grid grid-cols-6 gap-6">

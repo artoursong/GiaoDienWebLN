@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useFormik } from "formik";
-import { authService } from "api/auth";
 import validationSchema from "./formik/validationSchema";
 import initialValues from "./formik/initialValues";
 import Container from "components/Container";

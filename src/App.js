@@ -5,7 +5,6 @@ import { useAuth } from "./context/authContext";
 
 import { authService } from "api/auth";
 import bookService from "api/truyenAPI";
-import LoadingSpinner from "components/LoadingSpinner";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -39,7 +38,7 @@ function App() {
   ) {
     return <AppRouter />;
   } else {
-    return <LoadingSpinner size={10} />;
+    return null;
   }
 }
 
