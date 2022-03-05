@@ -61,12 +61,7 @@ const ManageBook = () => {
           ))}
         </div>
       ) : (
-        <p className="text-light-gray">
-          Bạn chưa đăng truyện nào. Đăng truyện tại{" "}
-          <span className="cursor-pointer text-indigo-400 hover:underline">
-            đây
-          </span>
-        </p>
+        <p className="text-light-gray">Bạn chưa đăng truyện nào.</p>
       )}
     </>
   );

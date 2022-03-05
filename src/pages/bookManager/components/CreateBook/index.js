@@ -1,35 +1,24 @@
 import { useState } from "react";
+
+// formik
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
-import { HiChevronLeft } from "react-icons/hi";
 import validationSchema from "./formik/validationSchema";
 import initialValues from "./formik/initialValues";
-import Container from "components/Container";
+
+// libs
+import { Link } from "react-router-dom";
+import { HiChevronLeft } from "react-icons/hi";
+
+// context
 import { useAuth } from "context/authContext";
+
+// components
+import Container from "components/Container";
 import bookService from "api/truyenAPI";
 import ImageUpload from "./ImageUpload";
+import Form from "components/Form";
 
-const genres = [
-  { id: 1, name: "Action" },
-  { id: 2, name: "Adult" },
-  { id: 3, name: "Adventure" },
-  { id: 4, name: "Chinese Novel" },
-  { id: 5, name: "Comedy" },
-  { id: 6, name: "Drama" },
-  { id: 7, name: "English Novel" },
-  { id: 8, name: "Fantasy" },
-  { id: 9, name: "Historical" },
-  { id: 10, name: "Horror" },
-  { id: 11, name: "Korean Novel" },
-  { id: 12, name: "Magic" },
-  { id: 13, name: "Seinen" },
-  { id: 14, name: "Romance" },
-  { id: 15, name: "School Life" },
-  { id: 16, name: "Science Fiction" },
-  { id: 17, name: "Slice of Life" },
-  { id: 18, name: "Sports" },
-  { id: 19, name: "Tragedy" },
-];
+import genres from "constant/genres";
 
 const CreateBook = () => {
   const [authState] = useAuth();
@@ -89,33 +78,16 @@ const CreateBook = () => {
         <div>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label
-                htmlFor="name"
-                className="inline-block text-lg font-medium text-gray-300"
-              >
-                Tiêu đề
-              </label>
-              <div className="w-full">
-                <input
-                  type="text"
-                  name="name"
-                  value={values.name}
-                  onChange={handleChange}
-                  className={`mt-1 mb-2 block w-full rounded-md border bg-[#314053] px-4 py-2 text-white ${
-                    touched.name && errors.name
-                      ? "border-red-500"
-                      : "border-transparent"
-                  }`}
-                  autoComplete="off"
-                  onBlur={handleBlur}
-                  disabled={isSubmitting}
-                />
-                {touched.name && errors.name ? (
-                  <span className="text-sm italic text-red-500">
-                    {errors.name}
-                  </span>
-                ) : null}
-              </div>
+              <Form.Label htmlFor={"name"}>Tiêu đề</Form.Label>
+              <Form.Input
+                onBlur={handleBlur}
+                onChange={handleChange}
+                isError={touched.name && errors.name}
+                error={<Form.Error>{errors.name}</Form.Error>}
+                disabled={isSubmitting}
+                value={values.name}
+                name="name"
+              />
             </div>
             <div>
               <ImageUpload
@@ -125,91 +97,42 @@ const CreateBook = () => {
             </div>
 
             <div className="mb-4">
-              <label
-                htmlFor="ten_khac"
-                className="inline-block text-lg font-medium text-gray-300"
-              >
-                Tiêu đề khác
-              </label>
-              <div className="w-full">
-                <input
-                  type="text"
-                  name="ten_khac"
-                  value={values.ten_khac}
-                  onChange={handleChange}
-                  className={`mt-1 mb-2 block w-full rounded-md border bg-[#314053] px-4 py-2 text-white ${
-                    touched.ten_khac && errors.ten_khac
-                      ? "border-red-500"
-                      : "border-transparent"
-                  }`}
-                  autoComplete="off"
-                  onBlur={handleBlur}
-                  disabled={isSubmitting}
-                />
-              </div>
-              {touched.ten_khac && errors.ten_khac ? (
-                <span className="text-sm italic text-red-500">
-                  {errors.ten_khac}
-                </span>
-              ) : null}
+              <Form.Label htmlFor={"ten_khac"}>Tiêu đề khác</Form.Label>
+              <Form.Input
+                onBlur={handleBlur}
+                onChange={handleChange}
+                isError={touched.ten_khac && errors.ten_khac}
+                error={<Form.Error>{errors.ten_khac}</Form.Error>}
+                disabled={isSubmitting}
+                value={values.ten_khac}
+                name="ten_khac"
+              />
             </div>
 
             <div className="mb-4">
-              <label
-                htmlFor="author"
-                className="inline-block text-lg font-medium text-gray-300"
-              >
-                Tác giả
-              </label>
-              <div className="w-full">
-                <input
-                  type="text"
-                  name="author"
-                  onChange={handleChange}
-                  className={`mt-1 mb-2 block w-full rounded-md border bg-[#314053] px-4 py-2 text-white ${
-                    touched.author && errors.author
-                      ? "border-red-500"
-                      : "border-transparent"
-                  }`}
-                  autoComplete="off"
-                  onBlur={handleBlur}
-                  disabled={isSubmitting}
-                />
-                {touched.author && errors.author ? (
-                  <span className="text-sm italic text-red-500">
-                    {errors.author}
-                  </span>
-                ) : null}
-              </div>
+              <Form.Label htmlFor={"author"}>Tác giả</Form.Label>
+              <Form.Input
+                onBlur={handleBlur}
+                onChange={handleChange}
+                isError={touched.author && errors.author}
+                error={<Form.Error>{errors.author}</Form.Error>}
+                disabled={isSubmitting}
+                value={values.author}
+                name="author"
+              />
             </div>
 
             <div className="mb-4">
-              <label
-                htmlFor="hoa_si"
-                className="inline-block text-lg font-medium text-gray-300"
-              >
-                Họa sĩ
-              </label>
-              <div className="w-full">
-                <input
-                  type="text"
-                  name="hoa_si"
-                  onChange={handleChange}
-                  className={`mt-1 mb-2 block w-full rounded-md border bg-[#314053] px-4 py-2 text-white ${
-                    touched.hoa_si && errors.hoa_si
-                      ? "border-red-500"
-                      : "border-transparent"
-                  }`}
-                  autoComplete="off"
-                  onBlur={handleBlur}
-                  disabled={isSubmitting}
-                />
-                {touched.hoa_si && errors.hoa_si ? (
-                  <span className="text-sm italic text-red-500">
-                    {errors.hoa_si}
-                  </span>
-                ) : null}
-              </div>
+              <Form.Label htmlFor={"hoa_si"}>Họa sĩ</Form.Label>
+              <Form.Input
+                onBlur={handleBlur}
+                onChange={handleChange}
+                isError={touched.hoa_si && errors.hoa_si}
+                error={<Form.Error>{errors.hoa_si}</Form.Error>}
+                disabled={isSubmitting}
+                value={values.hoa_si}
+                name="hoa_si"
+              />
             </div>
 
             <div className="mb-4">
@@ -230,57 +153,33 @@ const CreateBook = () => {
                         onBlur={handleBlur}
                         disabled={isSubmitting}
                       />
-                      <label htmlFor={genre.id} className="text-light-gray">
+                      <Form.Label size="text-base" htmlFor={genre.id}>
                         {genre.name}
-                      </label>
+                      </Form.Label>
                     </div>
                   ))}
                 </div>
                 {touched.categories && errors.categories ? (
-                  <span className="text-sm italic text-red-500">
-                    {errors.categories}
-                  </span>
+                  <Form.Error>{errors.categories}</Form.Error>
                 ) : null}
               </div>
             </div>
 
             <div className="mb-4">
-              <label
-                htmlFor="mo_ta"
-                className="inline-block text-lg font-medium text-gray-300"
-              >
-                Tóm tắt
-              </label>
-              <div className="w-full">
-                <textarea
-                  name="mo_ta"
-                  id="mo_ta"
-                  onChange={handleChange}
-                  rows="10"
-                  className={`mt-1 mb-2 block w-full rounded-md border bg-[#314053] px-4 py-2 text-white ${
-                    touched.mo_ta && errors.mo_ta
-                      ? "border-red-500"
-                      : "border-transparent"
-                  }`}
-                  onBlur={handleBlur}
-                  disabled={isSubmitting}
-                ></textarea>
-                {touched.mo_ta && errors.mo_ta ? (
-                  <span className="text-sm italic text-red-500">
-                    {errors.mo_ta}
-                  </span>
-                ) : null}
-              </div>
+              <Form.Label htmlFor={"mo_ta"}>Tóm tắt</Form.Label>
+              <Form.TextArea
+                onBlur={handleBlur}
+                onChange={handleChange}
+                isError={touched.mo_ta && errors.mo_ta}
+                error={<Form.Error>{errors.mo_ta}</Form.Error>}
+                disabled={isSubmitting}
+                value={values.mo_ta}
+                name="mo_ta"
+              />
             </div>
 
             <div className="text-right">
-              <button
-                className="rounded-md bg-indigo-600 px-8 py-2 text-lg font-semibold text-white transition-all hover:bg-indigo-700 disabled:cursor-wait disabled:opacity-60"
-                type="submit"
-                disabled={isSubmitting}
-              >
-                Đăng truyện
-              </button>
+              <Form.Submit disabled={isSubmitting}>Đăng truyện</Form.Submit>
             </div>
           </form>
         </div>

@@ -1,38 +1,11 @@
 import { Link } from "react-router-dom";
-import Container from "./Container";
 import { useAuth } from "context/authContext";
+
+import Container from "./Container";
 import HeaderUser from "./HeaderUser";
 import HeaderCategories from "./HeaderCategories";
 
-const menu = [
-  {
-    id: 1,
-    title: "Đăng truyện",
-    link: "/manage/create",
-    isPrivate: true,
-  },
-
-  {
-    id: 2,
-    title: "Kệ sách",
-    link: "/user/kesach",
-    isPrivate: true,
-  },
-
-  {
-    id: 3,
-    title: "Xuất bản",
-    link: "/",
-    isPrivate: false,
-  },
-
-  {
-    id: 4,
-    title: "Thảo luận",
-    link: "/",
-    isPrivate: false,
-  },
-];
+import headerNav from "constant/headerNav";
 
 const Header = () => {
   const [authState] = useAuth();
@@ -53,7 +26,7 @@ const Header = () => {
           </h1>
           <nav>
             <ul className="flex gap-10">
-              {menu.map((item) => (
+              {headerNav.map((item) => (
                 <li key={item.id}>
                   <Link
                     to={
@@ -68,7 +41,6 @@ const Header = () => {
               <HeaderCategories />
             </ul>
           </nav>
-
           <div className="ml-auto">
             <HeaderUser authState={authState} />
           </div>

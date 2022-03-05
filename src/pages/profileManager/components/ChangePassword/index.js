@@ -1,9 +1,14 @@
 import { useState } from "react";
+
+// formik
+import { useFormik } from "formik";
 import initialValues from "./formik/initialValues";
 import validationSchema from "./formik/validationSchema";
-import { useFormik } from "formik";
+
 import { authService } from "api/auth";
 import { useAuth } from "context/authContext";
+
+import Form from "components/Form";
 
 const ChangePassword = () => {
   const [authState] = useAuth();
@@ -55,75 +60,46 @@ const ChangePassword = () => {
           <h2 className="mb-5 text-2xl font-bold text-white">Đổi mật khẩu</h2>
           <div className="mb-6 max-w-md">
             <div className="mb-4">
-              <label
-                htmlFor="password"
-                className="inline-block text-lg font-medium text-gray-300"
-              >
-                Mật khẩu hiện tại
-              </label>
-              <input
+              <Form.Label htmlFor={"password"}>Mật khẩu hiện tại</Form.Label>
+              <Form.Input
                 type="password"
                 name="password"
-                id="password"
-                autoComplete="given-name"
-                className="mt-1 mb-2 block w-full rounded-md bg-[#314053] px-4 py-2 text-white"
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                disabled={isSubmitting}
+                isError={touched.password && errors.password}
+                error={<Form.Error>{errors.password}</Form.Error>}
               />
-              {errors.password && touched.password ? (
-                <span className="mt-1 block text-sm text-red-500">
-                  {errors.password}
-                </span>
-              ) : null}
             </div>
 
             <div className="mb-4">
-              <label
-                htmlFor="newPassword"
-                className="inline-block text-lg font-medium text-gray-300"
-              >
-                Mật khẩu mới
-              </label>
-              <input
+              <Form.Label htmlFor={"newPassword"}>Mật khẩu hiện tại</Form.Label>
+              <Form.Input
                 type="password"
                 name="newPassword"
-                id="newPassword"
-                autoComplete="email"
-                className="mt-1 mb-2 block w-full rounded-md bg-[#314053] px-4 py-2 text-white"
                 value={values.newPassword}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                disabled={isSubmitting}
+                isError={touched.newPassword && errors.newPassword}
+                error={<Form.Error>{errors.newPassword}</Form.Error>}
               />
-              {errors.newPassword && touched.newPassword ? (
-                <span className="mt-1 block text-sm text-red-500">
-                  {errors.newPassword}
-                </span>
-              ) : null}
             </div>
-
             <div>
-              <label
-                htmlFor="confirmPassword"
-                className="inline-block text-lg font-medium text-gray-300"
-              >
-                Nhập lại mật khẩu mới
-              </label>
-              <input
+              <Form.Label htmlFor={"confirmPassword"}>
+                Mật khẩu hiện tại
+              </Form.Label>
+              <Form.Input
                 type="password"
                 name="confirmPassword"
-                id="confirmPassword"
-                autoComplete="email"
-                className="mt-1 mb-2 block w-full rounded-md bg-[#314053] px-4 py-2 text-white"
                 value={values.confirmPassword}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                disabled={isSubmitting}
+                isError={touched.confirmPassword && errors.confirmPassword}
+                error={<Form.Error>{errors.confirmPassword}</Form.Error>}
               />
-              {errors.confirmPassword && touched.confirmPassword ? (
-                <span className="mt-1 block text-sm text-red-500">
-                  {errors.confirmPassword}
-                </span>
-              ) : null}
             </div>
           </div>
           {notification.message ? (
@@ -137,9 +113,8 @@ const ChangePassword = () => {
               {notification.message}
             </span>
           ) : null}
-          <button
-            className="rounded-md bg-indigo-700 px-4 py-2 text-white transition-all hover:bg-indigo-600 disabled:pointer-events-none disabled:opacity-60"
-            type="submit"
+
+          <Form.Submit
             disabled={
               errors.confirmPassword ||
               errors.newPassword ||
@@ -151,7 +126,7 @@ const ChangePassword = () => {
             }
           >
             Đổi mật khẩu
-          </button>
+          </Form.Submit>
         </div>
       </form>
     </div>

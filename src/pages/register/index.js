@@ -1,10 +1,15 @@
-import Container from "components/Container";
-import { useFormik } from "formik";
-import { authService } from "api/auth";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
+// formik
+import { useFormik } from "formik";
 import initialValues from "./formik/initialValues";
 import validationSchema from "./formik/validationSchema";
+
+import { authService } from "api/auth";
+import Container from "components/Container";
+
+import Form from "components/Form";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -59,91 +64,60 @@ const Register = () => {
               {error ? (
                 <p className="text-center text-red-500">{error}</p>
               ) : null}
-              <div className="mb-5 flex w-full items-center gap-8">
-                <label
-                  className="inline-block w-[40%] text-right text-light-gray"
-                  htmlFor="username"
-                >
-                  Tên đăng nhập
-                </label>
-                <div className="w-[55%]">
-                  <input
-                    type="text"
-                    name="username"
-                    onBlur={handleBlur}
-                    className={`mt-1 mb-2 block w-full rounded-md border bg-[#314053] px-4 py-2 text-white ${
-                      touched.username && errors.username
-                        ? "border-red-600"
-                        : "border-transparent"
-                    }`}
-                    onChange={handleChange}
-                    value={values.username}
-                  />
-                </div>
+              <div className="mb-5">
+                <Form.Label htmlFor={"username"}>Tên đăng nhập</Form.Label>
+                <Form.Input
+                  type="text"
+                  name="username"
+                  onBlur={handleBlur}
+                  isError={touched.username && errors.username}
+                  error={<Form.Error>{errors.username}</Form.Error>}
+                  disabled={isSubmitting}
+                  onChange={handleChange}
+                  value={values.username}
+                />
               </div>
-              <div className="mb-5 flex w-full items-center gap-8">
-                <label
-                  className="inline-block w-[40%] text-right text-light-gray"
-                  htmlFor="username"
-                >
-                  Email
-                </label>
-                <div className="w-[55%]">
-                  <input
-                    type="email"
-                    name="email"
-                    onBlur={handleBlur}
-                    className={`mt-1 mb-2 block w-full rounded-md border bg-[#314053] px-4 py-2 text-white ${
-                      touched.email && errors.email
-                        ? "border-red-600"
-                        : "border-transparent"
-                    }`}
-                    onChange={handleChange}
-                    value={values.email}
-                  />
-                </div>
+              <div className="mb-5">
+                <Form.Label htmlFor={"email"}>Email</Form.Label>
+                <Form.Input
+                  type="email"
+                  name="email"
+                  onBlur={handleBlur}
+                  isError={touched.email && errors.email}
+                  error={<Form.Error>{errors.email}</Form.Error>}
+                  disabled={isSubmitting}
+                  onChange={handleChange}
+                  value={values.email}
+                />
               </div>
-              <div className="mb-5 flex w-full items-center gap-8">
-                <label className="inline-block w-[40%] text-right text-light-gray">
-                  Mật khẩu
-                </label>
-                <div className="w-[55%]">
-                  <input
-                    type="password"
-                    name="password"
-                    onBlur={handleBlur}
-                    className={`mt-1 mb-2 block w-full rounded-md border bg-[#314053] px-4 py-2 text-white ${
-                      touched.password && errors.password
-                        ? "border-red-600"
-                        : "border-transparent"
-                    }`}
-                    value={values.password}
-                    onChange={handleChange}
-                  />
-                </div>
+              <div className="mb-5">
+                <Form.Label htmlFor={"password"}>Mật khẩu</Form.Label>
+                <Form.Input
+                  type="password"
+                  name="password"
+                  onBlur={handleBlur}
+                  isError={touched.password && errors.password}
+                  error={<Form.Error>{errors.password}</Form.Error>}
+                  disabled={isSubmitting}
+                  value={values.password}
+                  onChange={handleChange}
+                />
               </div>
 
-              <div className="mb-5 flex w-full items-center gap-8">
-                <div className="ml-auto w-[55%]">
-                  <button
-                    type="submit"
-                    className="rounded-md bg-indigo-600 px-6 py-1 text-white disabled:cursor-not-allowed disabled:opacity-70"
-                    disabled={isSubmitting || !isValid}
-                  >
-                    Đăng ký
-                  </button>
-                </div>
+              <div className="mb-5">
+                <Form.Submit disabled={isSubmitting || !isValid}>
+                  Đăng ký
+                </Form.Submit>
               </div>
-              <div className="flex w-full items-center gap-8">
-                <div className="ml-auto w-[55%] text-light-gray">
-                  <span>Bạn đã có tài khoản?</span>{" "}
-                  <Link
-                    to="/login"
-                    className="cursor-pointer text-indigo-500 hover:underline"
-                  >
-                    Đăng nhập
-                  </Link>
-                </div>
+
+              <div className="flex items-center gap-2 text-light-gray">
+                <span>Bạn đã có tài khoản?</span>{" "}
+                <Link
+                  to="/dang-nhap"
+                  className="cursor-pointer text-indigo-500 hover:underline"
+                >
+                  Đăng nhập
+                </Link>
               </div>
             </div>
           </div>

@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+
+import { useFormik } from "formik";
 import initialValues from "./formik/initialValues";
 import validationSchema from "./formik/validationSchema";
-import { useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
-import { useParams } from "react-router-dom";
-import bookService from "api/truyenAPI";
+
 import { useTruyen } from "context/truyenContext";
+import bookService from "api/truyenAPI";
+
 import ImageUpload from "../CreateBook/ImageUpload";
+import Form from "components/Form";
 
 const CreateVolume = ({ mode }) => {
   const [, setTruyen] = useTruyen();
@@ -95,32 +98,16 @@ const CreateVolume = ({ mode }) => {
           </h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-5">
-              <label
-                htmlFor="name"
-                className="mb-2 inline-block w-[150px] text-lg font-medium text-[#cbdff3]"
-              >
-                Tiêu đề
-              </label>
-              <div className="w-full">
-                <input
-                  type="text"
-                  name="title"
-                  value={values.title}
-                  onChange={handleChange}
-                  className={`mt-1 mb-2 block w-full rounded-md border bg-[#314053] px-4 py-2 text-white ${
-                    touched.title && errors.title
-                      ? "border-red-500"
-                      : "border-transparent"
-                  }`}
-                  autoComplete="off"
-                  onBlur={handleBlur}
-                />
-                {touched.title && errors.title ? (
-                  <span className="text-sm italic text-red-500">
-                    {errors.title}
-                  </span>
-                ) : null}
-              </div>
+              <Form.Label htmlFor="title">Tiêu đề</Form.Label>
+              <Form.Input
+                name="title"
+                value={values.title}
+                onChange={handleChange}
+                isError={touched.title && errors.title}
+                error={<Form.Error>{errors.title}</Form.Error>}
+                onBlur={handleBlur}
+                disabled={isSubmitting}
+              />
             </div>
             <ImageUpload
               setUploadImage={setUploadImg}
@@ -128,13 +115,9 @@ const CreateVolume = ({ mode }) => {
               labelColor="text-light-gray"
             />
 
-            <button
-              className="rounded-md bg-indigo-700 px-4 py-2 text-white transition-all hover:bg-indigo-800 disabled:pointer-events-none disabled:opacity-60"
-              type="submit"
-              disabled={isSubmitting}
-            >
+            <Form.Submit disabled={isSubmitting}>
               {mode !== "edit" ? "Tạo tập" : "Sửa tập"}
-            </button>
+            </Form.Submit>
           </form>
         </div>
       ) : null}

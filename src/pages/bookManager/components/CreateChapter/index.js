@@ -1,11 +1,16 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { Editor } from "@tinymce/tinymce-react";
+
+// formik
+import { useFormik } from "formik";
 import initialValues from "./formik/initialValues";
 import validationSchema from "./formik/validationSchema";
-import { useFormik } from "formik";
-import { Editor } from "@tinymce/tinymce-react";
-import bookService from "api/truyenAPI";
-import { useParams } from "react-router-dom";
+
 import { useTruyen } from "context/truyenContext";
+import bookService from "api/truyenAPI";
+
+import Form from "components/Form";
 
 const CreateChapter = () => {
   const [truyen, setTruyen] = useTruyen();
@@ -43,7 +48,7 @@ const CreateChapter = () => {
     handleSubmit,
   } = formik;
 
-  const handleEditorChange = (newValue, editor) => {
+  const handleEditorChange = (newValue) => {
     setContent(newValue);
   };
 
@@ -63,37 +68,19 @@ const CreateChapter = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="mb-5">
-            <label
-              htmlFor="name"
-              className="mb-4 inline-block w-[150px] text-lg font-medium text-[#cbdff3]"
-            >
-              Tiêu đề
-            </label>
-            <div className="w-full">
-              <input
-                type="text"
-                name="name"
-                value={values.name}
-                onChange={handleChange}
-                className={`mt-1 mb-2 block w-full rounded-md border bg-[#314053] px-4 py-2 text-white ${
-                  touched.name && errors.name
-                    ? "border-red-500"
-                    : "border-transparent"
-                }`}
-                autoComplete="off"
-                onBlur={handleBlur}
-              />
-              {touched.name && errors.name ? (
-                <span className="text-sm italic text-red-500">
-                  {errors.name}
-                </span>
-              ) : null}
-            </div>
+            <Form.Label htmlFor="name">Tiêu đề</Form.Label>
+            <Form.Input
+              name="name"
+              value={values.name}
+              onChange={handleChange}
+              isError={touched.name && errors.name}
+              error={<Form.Error>{errors.name}</Form.Error>}
+              onBlur={handleBlur}
+            />
           </div>
           <div className="mb-4">
-            <label className="mb-4 inline-block w-[150px] text-lg font-medium text-[#cbdff3]">
-              Nội dung
-            </label>
+            <Form.Label htmlFor={""}>Nội dung</Form.Label>
+
             <Editor
               apiKey="c9afbhlj7a0wldum0x9otlweekf3cra96smk3q5mlfpdgaaq"
               init={{
@@ -113,13 +100,7 @@ const CreateChapter = () => {
             />
           </div>
 
-          <button
-            className="rounded-md bg-indigo-700 px-4 py-2 text-white transition-all hover:bg-indigo-800 disabled:pointer-events-none disabled:opacity-60"
-            type="submit"
-            disabled={isSubmitting}
-          >
-            Tạo chương
-          </button>
+          <Form.Submit disabled={isSubmitting}>Tạo chương</Form.Submit>
         </form>
       </div>
     </>

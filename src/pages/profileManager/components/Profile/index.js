@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
+
+//formik
+import { useFormik } from "formik";
 import initialValues from "./formik/initialValues";
 import validationSchema from "./formik/validationSchema";
+
 import { useAuth } from "context/authContext";
-import { useFormik } from "formik";
 import { changeuserinfo } from "context/authContext";
+
+import Form from "components/Form";
 
 const Profile = () => {
   const [authState, setAuthState] = useAuth();
@@ -66,53 +71,29 @@ const Profile = () => {
           </h2>
           <div className="mb-6 grid grid-cols-6 gap-6">
             <div className="col-span-6 sm:col-span-3">
-              <label
-                htmlFor="username"
-                className="block text-lg font-medium text-gray-300"
-              >
-                Username
-              </label>
-              <input
+              <Form.Label htmlFor={"username"}>Username</Form.Label>
+              <Form.Input
                 type="text"
                 name="username"
-                id="username"
-                autoComplete="given-name"
-                className="mt-2 block w-full rounded-md bg-[#314053] px-4 py-2 font-light text-gray-50 transition-all disabled:bg-gray-800"
                 value={values.username}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                disabled
+                disabled={true}
               />
-              {errors.username && touched.username ? (
-                <span className="mt-1 block text-sm text-red-500">
-                  {errors.username}
-                </span>
-              ) : null}
             </div>
 
             <div className="col-span-6 sm:col-span-3">
-              <label
-                htmlFor="last-name"
-                className="block text-lg font-medium text-gray-300"
-              >
-                Email
-              </label>
-              <input
+              <Form.Label htmlFor="email">Email</Form.Label>
+              <Form.Input
                 type="email"
                 name="email"
-                id="email"
-                autoComplete="email"
-                className="mt-2 block w-full rounded-md bg-[#314053] px-4 py-2 font-light text-gray-50 transition-all disabled:bg-gray-800"
+                isError={errors.email && touched.email}
+                error={<Form.Error>{errors.email}</Form.Error>}
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={isSubmitting}
               />
-              {errors.email && touched.email ? (
-                <span className="mt-1 block text-sm text-red-500">
-                  {errors.email}
-                </span>
-              ) : null}
             </div>
           </div>
           {notification.message ? (
@@ -127,13 +108,7 @@ const Profile = () => {
             </span>
           ) : null}
 
-          <button
-            className="rounded-md bg-indigo-700 px-4 py-2 text-white transition-all hover:bg-indigo-600 disabled:pointer-events-none disabled:opacity-60"
-            type="submit"
-            disabled={isSubmitting}
-          >
-            Xác nhận thay đổi
-          </button>
+          <Form.Submit disabled={isSubmitting}>Xác nhận thay đổi</Form.Submit>
         </div>
       </form>
     </div>
