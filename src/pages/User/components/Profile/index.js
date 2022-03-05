@@ -58,10 +58,10 @@ const Profile = () => {
   }, [authState.user, setValues]);
 
   return (
-    <div className="mt-5 md:col-span-2 md:mt-0">
+    <div className="md:col-span-2">
       <form method="POST" onSubmit={handleSubmit}>
-        <div className="w-full rounded-md border border-gray-500 p-4">
-          <h2 className="mb-5 text-2xl font-bold uppercase text-[#cbdff3]">
+        <div className="w-full rounded-md">
+          <h2 className="mb-5 text-2xl font-bold text-white">
             Thông tin cá nhân
           </h2>
           <div className="mb-6 grid grid-cols-6 gap-6">
@@ -77,7 +77,7 @@ const Profile = () => {
                 name="username"
                 id="username"
                 autoComplete="given-name"
-                className="mt-1 block w-full rounded-md border border-gray-400 bg-transparent p-2 text-gray-50 transition-all disabled:bg-gray-800"
+                className="mt-2 block w-full rounded-md bg-[#314053] px-4 py-2 font-light text-gray-50 transition-all disabled:bg-gray-800"
                 value={values.username}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -102,7 +102,7 @@ const Profile = () => {
                 name="email"
                 id="email"
                 autoComplete="email"
-                className="mt-1 block w-full rounded-md border border-gray-400 bg-transparent p-2 text-gray-50 transition-all disabled:bg-gray-800"
+                className="mt-2 block w-full rounded-md bg-[#314053] px-4 py-2 font-light text-gray-50 transition-all disabled:bg-gray-800"
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -128,7 +128,7 @@ const Profile = () => {
           ) : null}
 
           <button
-            className="rounded-md bg-blue-500 px-4 py-2 text-white transition-all hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-60"
+            className="rounded-md bg-indigo-700 px-4 py-2 text-white transition-all hover:bg-indigo-600 disabled:pointer-events-none disabled:opacity-60"
             type="submit"
             disabled={isSubmitting}
           >

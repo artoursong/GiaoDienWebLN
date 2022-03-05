@@ -17,7 +17,7 @@ const UserNav = () => {
         <div
           className={`rounded-full ${
             location.pathname.includes("profile")
-              ? "bg-cyan-500 text-white"
+              ? "bg-indigo-500 text-white"
               : "bg-[hsl(210deg,14%,66%)] text-[hsl(210deg,14%,66%)]"
           } h-[12px] w-[12px]`}
         ></div>
@@ -34,14 +34,14 @@ const UserNav = () => {
         <div
           className={`rounded-full ${
             location.pathname.includes("password")
-              ? "bg-cyan-500 text-white"
+              ? "bg-indigo-500 text-white"
               : "bg-[hsl(210deg,14%,66%)] text-[hsl(210deg,14%,66%)]"
           } h-[12px] w-[12px]`}
         ></div>
         Đổi mật khẩu
       </NavLink>
       <NavLink
-        to="novels"
+        to="/manage"
         className={(link) =>
           `${
             !link.isActive ? "text-[hsl(210deg,14%,66%)]" : " text-white"
@@ -51,11 +51,11 @@ const UserNav = () => {
         <div
           className={`rounded-full ${
             location.pathname.includes("novels")
-              ? "bg-cyan-500 text-white"
+              ? "bg-indigo-500 text-white"
               : "bg-[hsl(210deg,14%,66%)] text-[hsl(210deg,14%,66%)]"
           } h-[12px] w-[12px]`}
         ></div>
-        Truyện đã đăng
+        Quản lý truyện
       </NavLink>
       <NavLink
         to="kesach"
@@ -68,7 +68,7 @@ const UserNav = () => {
         <div
           className={`rounded-full ${
             location.pathname.includes("kesach")
-              ? "bg-cyan-500 text-white"
+              ? "bg-indigo-500 text-white"
               : "bg-[hsl(210deg,14%,66%)] text-[hsl(210deg,14%,66%)]"
           } h-[12px] w-[12px]`}
         ></div>
@@ -85,7 +85,7 @@ const UserNav = () => {
         <div
           className={`rounded-full ${
             location.pathname.includes("bookmark")
-              ? "bg-cyan-500 text-white"
+              ? "bg-indigo-500 text-white"
               : "bg-[hsl(210deg,14%,66%)] text-[hsl(210deg,14%,66%)]"
           } h-[12px] w-[12px]`}
         ></div>

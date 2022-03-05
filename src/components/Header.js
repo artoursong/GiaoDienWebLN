@@ -8,7 +8,7 @@ const menu = [
   {
     id: 1,
     title: "Đăng truyện",
-    link: "/dangtruyen",
+    link: "/manage/create",
     isPrivate: true,
   },
 
@@ -59,7 +59,7 @@ const Header = () => {
                     to={
                       item.isPrivate && authState.isAuth ? item.link : "/login"
                     }
-                    className="relative cursor-pointer font-semibold text-gray-200 transition-all after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:w-0 after:bg-blue-600 after:transition-all after:duration-200 hover:text-gray-300 hover:after:w-full"
+                    className="relative cursor-pointer font-semibold text-gray-200 transition-all hover:text-yellow-500"
                   >
                     {item.title}
                   </Link>

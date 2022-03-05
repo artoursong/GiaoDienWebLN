@@ -13,7 +13,7 @@ const User = () => {
           <div className="flex flex-col gap-4 p-2">
             <UserNav />
           </div>
-          <div className="w-full">
+          <div className="w-full px-2">
             <Outlet />
           </div>
         </div>

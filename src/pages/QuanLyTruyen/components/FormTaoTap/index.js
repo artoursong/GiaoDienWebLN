@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import bookService from "api/truyenAPI";
 import { useTruyen } from "context/truyenContext";
 import LoadingSpinner from "components/LoadingSpinner";
-import ImageUpload from "pages/taotruyen/ImageUpload";
+import ImageUpload from "../CreateBook/ImageUpload";
 
 const FormTaoTap = ({ mode }) => {
   const [, setTruyen] = useTruyen();
@@ -91,14 +91,14 @@ const FormTaoTap = ({ mode }) => {
     <>
       {!isLoading ? (
         <div>
-          <h1 className="mb-5 text-3xl font-bold text-[#cbdff3]">
+          <h2 className="mb-5 text-2xl font-bold text-white">
             {mode === "edit" ? "Sửa tập" : "Tạo tập"}
-          </h1>
+          </h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-5">
               <label
                 htmlFor="name"
-                className="mb-4 inline-block w-[150px] text-lg font-medium text-[#cbdff3]"
+                className="mb-2 inline-block w-[150px] text-lg font-medium text-[#cbdff3]"
               >
                 Tiêu đề
               </label>
@@ -108,16 +108,18 @@ const FormTaoTap = ({ mode }) => {
                   name="title"
                   value={values.title}
                   onChange={handleChange}
-                  className={`mb-2 block w-full rounded-md border bg-transparent py-2 px-4 text-white focus:border focus:border-blue-500 ${
+                  className={`mt-1 mb-2 block w-full rounded-md border bg-[#314053] px-4 py-2 text-white ${
                     touched.title && errors.title
                       ? "border-red-500"
-                      : "border-gray-400"
+                      : "border-transparent"
                   }`}
                   autoComplete="off"
                   onBlur={handleBlur}
                 />
                 {touched.title && errors.title ? (
-                  <span className="italic text-red-500">{errors.title}</span>
+                  <span className="text-sm italic text-red-500">
+                    {errors.title}
+                  </span>
                 ) : null}
               </div>
             </div>
@@ -126,20 +128,17 @@ const FormTaoTap = ({ mode }) => {
               uploadImage={uploadImg}
               labelColor="text-light-gray"
             />
+
             <button
+              className="rounded-md bg-indigo-700 px-4 py-2 text-white transition-all hover:bg-indigo-800 disabled:pointer-events-none disabled:opacity-60"
               type="submit"
-              className="rounded bg-blue-600 py-2 px-6 text-white"
+              disabled={isSubmitting}
             >
               {mode !== "edit" ? "Tạo tập" : "Sửa tập"}
             </button>
           </form>
-          <div className="w-[50px]">
-            {isSubmitting ? <LoadingSpinner size={10} /> : null}
-          </div>
         </div>
-      ) : (
-        <LoadingSpinner size={8} />
-      )}
+      ) : null}
     </>
   );
 };

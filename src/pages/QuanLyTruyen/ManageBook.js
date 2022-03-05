@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import bookService from "api/truyenAPI";
 import { useAuth } from "context/authContext";
 import LoadingSpinner from "components/LoadingSpinner";
 import UserNovelCard from "components/UserNovelCard";
-import { Link } from "react-router-dom";
 
-const UserNovels = () => {
+const ManageBook = () => {
   const [authState] = useAuth();
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,10 +36,10 @@ const UserNovels = () => {
   return (
     <>
       <div className="mb-5">
-        <div className="mb-5 flex items-center justify-between">
+        <div className="flex items-center gap-10">
           <h2 className="text-2xl font-bold text-white">Truyện đã đăng</h2>
           <Link
-            to="/manage/create"
+            to="create"
             className="rounded-md bg-indigo-700 px-4 py-2 text-white transition-all hover:bg-indigo-600 disabled:pointer-events-none disabled:opacity-60"
           >
             Đăng truyện mới
@@ -51,7 +51,7 @@ const UserNovels = () => {
           <LoadingSpinner size={8} />
         </div>
       ) : books.length > 0 ? (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-6 gap-4">
           {books.map((book) => (
             <UserNovelCard
               book={book}
@@ -72,4 +72,4 @@ const UserNovels = () => {
   );
 };
 
-export default UserNovels;
+export default ManageBook;

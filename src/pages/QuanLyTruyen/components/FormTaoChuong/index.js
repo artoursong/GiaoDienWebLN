@@ -55,12 +55,13 @@ const FormTaoChuong = () => {
   return (
     <>
       <div>
-        <h1 className="mb-5 text-3xl font-bold text-[#cbdff3]">
+        <h2 className="mb-5 text-2xl font-bold text-white">
           Thêm chương cho{" "}
           {truyen &&
             truyen.volumes.find((volume) => volume.id === +params.volumeId)
               .name}
-        </h1>
+        </h2>
+
         <form onSubmit={handleSubmit}>
           <div className="mb-5">
             <label
@@ -75,16 +76,18 @@ const FormTaoChuong = () => {
                 name="name"
                 value={values.name}
                 onChange={handleChange}
-                className={`mb-2 block w-full rounded-md border bg-transparent py-2 px-4 text-white focus:border focus:border-blue-500 ${
-                  touched.title && errors.title
+                className={`mt-1 mb-2 block w-full rounded-md border bg-[#314053] px-4 py-2 text-white ${
+                  touched.name && errors.name
                     ? "border-red-500"
-                    : "border-gray-400"
+                    : "border-transparent"
                 }`}
                 autoComplete="off"
                 onBlur={handleBlur}
               />
-              {touched.title && errors.title ? (
-                <span className="italic text-red-500">{errors.title}</span>
+              {touched.name && errors.name ? (
+                <span className="text-sm italic text-red-500">
+                  {errors.name}
+                </span>
               ) : null}
             </div>
           </div>
@@ -114,16 +117,13 @@ const FormTaoChuong = () => {
           </div>
 
           <button
+            className="rounded-md bg-indigo-700 px-4 py-2 text-white transition-all hover:bg-indigo-800 disabled:pointer-events-none disabled:opacity-60"
             type="submit"
-            className="rounded bg-blue-600 py-2 px-6 text-white"
+            disabled={isSubmitting}
           >
             Tạo chương
           </button>
         </form>
-      </div>
-
-      <div className="w-[50px]">
-        {isSubmitting ? <LoadingSpinner size={10} /> : null}
       </div>
     </>
   );

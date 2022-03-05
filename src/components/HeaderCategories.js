@@ -30,12 +30,12 @@ const HeaderCategories = () => {
       <ul>
         <li className="relative">
           <span
-            className="relative flex cursor-pointer items-center font-semibold text-gray-200 transition-all after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:w-0 after:bg-blue-600 after:transition-all after:duration-200 hover:text-gray-300 hover:after:w-full"
+            className="relative flex cursor-pointer items-center font-semibold text-gray-200 transition-all hover:text-yellow-500"
             onClick={() => setIsOpen((prev) => !prev)}
           >
             Danh mục truyện
             <RiArrowDownSLine
-              className={`ml-2 text-lg transition-all duration-200 ${
+              className={`ml-2 text-lg transition-transform duration-200 ${
                 isOpen ? "rotate-180" : null
               }`}
             />
@@ -52,7 +52,7 @@ const HeaderCategories = () => {
               <div className="grid grid-cols-3 gap-5">
                 {categories.length > 0
                   ? categories.map((category) => (
-                      <Link className="hover:text-white" to="/">
+                      <Link className="hover:text-yellow-400" to="/">
                         {category.name}
                       </Link>
                     ))

@@ -79,7 +79,7 @@ const Banner = () => {
                           <div className="overflow-hidden rounded-md">
                             <img src={book.image} alt={book.name} />
                           </div>
-                          <h3 className="text-lg font-semibold text-light-gray group-hover:text-gray-50">
+                          <h3 className="text-lg font-semibold text-light-gray group-hover:text-yellow-500">
                             {book.name}
                           </h3>
                         </Link>

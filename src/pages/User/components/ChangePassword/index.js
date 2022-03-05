@@ -51,15 +51,13 @@ const ChangePassword = () => {
   return (
     <div className="mt-5 md:col-span-2 md:mt-0">
       <form onSubmit={handleSubmit} method="POST">
-        <div className="w-full rounded-md border border-gray-500 p-4">
-          <h2 className="mb-5 text-2xl font-bold uppercase text-[#cbdff3]">
-            Đổi mật khẩu
-          </h2>
+        <div className="w-full rounded-md">
+          <h2 className="mb-5 text-2xl font-bold text-white">Đổi mật khẩu</h2>
           <div className="mb-6 max-w-md">
             <div className="mb-4">
               <label
                 htmlFor="password"
-                className="block text-lg font-medium text-gray-300"
+                className="inline-block text-lg font-medium text-gray-300"
               >
                 Mật khẩu hiện tại
               </label>
@@ -68,7 +66,7 @@ const ChangePassword = () => {
                 name="password"
                 id="password"
                 autoComplete="given-name"
-                className="mt-1 mb-2 block w-full rounded-md border border-gray-400 bg-transparent p-2 text-gray-50"
+                className="mt-1 mb-2 block w-full rounded-md bg-[#314053] px-4 py-2 text-white"
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -83,7 +81,7 @@ const ChangePassword = () => {
             <div className="mb-4">
               <label
                 htmlFor="newPassword"
-                className="block text-lg font-medium text-gray-300"
+                className="inline-block text-lg font-medium text-gray-300"
               >
                 Mật khẩu mới
               </label>
@@ -92,7 +90,7 @@ const ChangePassword = () => {
                 name="newPassword"
                 id="newPassword"
                 autoComplete="email"
-                className="mt-1 mb-2 block w-full rounded-md border border-gray-400 bg-transparent p-2 text-gray-50"
+                className="mt-1 mb-2 block w-full rounded-md bg-[#314053] px-4 py-2 text-white"
                 value={values.newPassword}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -107,7 +105,7 @@ const ChangePassword = () => {
             <div>
               <label
                 htmlFor="confirmPassword"
-                className="block text-lg font-medium text-gray-300"
+                className="inline-block text-lg font-medium text-gray-300"
               >
                 Nhập lại mật khẩu mới
               </label>
@@ -116,7 +114,7 @@ const ChangePassword = () => {
                 name="confirmPassword"
                 id="confirmPassword"
                 autoComplete="email"
-                className="mt-1 mb-2 block w-full rounded-md border border-gray-400 bg-transparent p-2 text-gray-50"
+                className="mt-1 mb-2 block w-full rounded-md bg-[#314053] px-4 py-2 text-white"
                 value={values.confirmPassword}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -140,13 +138,16 @@ const ChangePassword = () => {
             </span>
           ) : null}
           <button
-            className="rounded-md bg-blue-500 px-4 py-2 text-white transition-all hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50"
+            className="rounded-md bg-indigo-700 px-4 py-2 text-white transition-all hover:bg-indigo-600 disabled:pointer-events-none disabled:opacity-60"
             type="submit"
             disabled={
               errors.confirmPassword ||
               errors.newPassword ||
               errors.password ||
-              isSubmitting
+              isSubmitting ||
+              !values.confirmPassword ||
+              !values.newPassword ||
+              !values.password
             }
           >
             Đổi mật khẩu

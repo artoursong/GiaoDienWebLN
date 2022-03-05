@@ -45,15 +45,15 @@ const DangKy = () => {
   } = formik;
 
   return (
-    <div>
+    <div className="min-h-screen bg-[#0D213D] pt-32">
       <Container>
         <form
           onSubmit={handleSubmit}
-          className="mx-auto mt-28 max-w-[700px] rounded-md border border-gray-200"
+          className="mx-auto max-w-[700px] overflow-hidden rounded-md border border-gray-700"
         >
-          <div className="border-b border-gray-200 bg-gray-100 px-4 py-2">
+          <h2 className="bg-gray-700 px-4 py-2 text-lg text-light-gray">
             Đăng ký
-          </div>
+          </h2>
           <div className="p-4">
             <div className="mx-auto max-w-[550px]">
               {error ? (
@@ -61,7 +61,7 @@ const DangKy = () => {
               ) : null}
               <div className="mb-5 flex w-full items-center gap-8">
                 <label
-                  className="inline-block w-[40%] text-right"
+                  className="inline-block w-[40%] text-right text-light-gray"
                   htmlFor="username"
                 >
                   Tên đăng nhập
@@ -71,10 +71,10 @@ const DangKy = () => {
                     type="text"
                     name="username"
                     onBlur={handleBlur}
-                    className={`block w-full rounded-md border  px-2 py-1 outline-none ${
+                    className={`mt-1 mb-2 block w-full rounded-md border bg-[#314053] px-4 py-2 text-white ${
                       touched.username && errors.username
                         ? "border-red-600"
-                        : "border-gray-200"
+                        : "border-transparent"
                     }`}
                     onChange={handleChange}
                     value={values.username}
@@ -83,7 +83,7 @@ const DangKy = () => {
               </div>
               <div className="mb-5 flex w-full items-center gap-8">
                 <label
-                  className="inline-block w-[40%] text-right"
+                  className="inline-block w-[40%] text-right text-light-gray"
                   htmlFor="username"
                 >
                   Email
@@ -93,10 +93,10 @@ const DangKy = () => {
                     type="email"
                     name="email"
                     onBlur={handleBlur}
-                    className={`block w-full rounded-md border px-2 py-1 outline-none ${
+                    className={`mt-1 mb-2 block w-full rounded-md border bg-[#314053] px-4 py-2 text-white ${
                       touched.email && errors.email
                         ? "border-red-600"
-                        : "border-gray-200"
+                        : "border-transparent"
                     }`}
                     onChange={handleChange}
                     value={values.email}
@@ -104,7 +104,7 @@ const DangKy = () => {
                 </div>
               </div>
               <div className="mb-5 flex w-full items-center gap-8">
-                <label className="inline-block w-[40%] text-right">
+                <label className="inline-block w-[40%] text-right text-light-gray">
                   Mật khẩu
                 </label>
                 <div className="w-[55%]">
@@ -112,10 +112,10 @@ const DangKy = () => {
                     type="password"
                     name="password"
                     onBlur={handleBlur}
-                    className={`block w-full rounded-md border px-2 py-1 outline-none ${
+                    className={`mt-1 mb-2 block w-full rounded-md border bg-[#314053] px-4 py-2 text-white ${
                       touched.password && errors.password
                         ? "border-red-600"
-                        : "border-gray-200"
+                        : "border-transparent"
                     }`}
                     value={values.password}
                     onChange={handleChange}
@@ -127,7 +127,7 @@ const DangKy = () => {
                 <div className="ml-auto w-[55%]">
                   <button
                     type="submit"
-                    className="bg-blue-500 px-4 py-1 text-white"
+                    className="rounded-md bg-indigo-600 px-6 py-1 text-white disabled:cursor-not-allowed disabled:opacity-70"
                     disabled={isSubmitting || !isValid}
                   >
                     Đăng ký
@@ -135,11 +135,11 @@ const DangKy = () => {
                 </div>
               </div>
               <div className="flex w-full items-center gap-8">
-                <div className="ml-auto w-[55%]">
+                <div className="ml-auto w-[55%] text-light-gray">
                   <span>Bạn đã có tài khoản?</span>{" "}
                   <Link
                     to="/login"
-                    className="cursor-pointer text-blue-400 hover:underline"
+                    className="cursor-pointer text-indigo-500 hover:underline"
                   >
                     Đăng nhập
                   </Link>

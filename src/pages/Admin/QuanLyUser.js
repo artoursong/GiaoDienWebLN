@@ -4,13 +4,13 @@ import { NavLink, Outlet } from "react-router-dom";
 const QuanLyUser = () => {
   return (
     <div>
-      <div className="flex items-center justify-center gap-5 pt-10">
+      <div className="flex items-center justify-center gap-5">
         <NavLink
           className={(link) =>
             `${
               link.isActive
-                ? "bg-blue-600 text-white"
-                : "text-blue-600 hover:text-blue-700"
+                ? "bg-indigo-600 text-white"
+                : "text-white hover:bg-indigo-700"
             } rounded-md px-4 py-2 font-medium `
           }
           to="reports"
@@ -21,8 +21,8 @@ const QuanLyUser = () => {
           className={(link) =>
             `${
               link.isActive
-                ? "bg-blue-600 text-white "
-                : "text-blue-600 hover:text-blue-700"
+                ? "bg-indigo-600 text-white "
+                : "text-white hover:bg-indigo-700"
             } rounded-md px-4 py-2 font-medium `
           }
           to="ban"
@@ -30,7 +30,6 @@ const QuanLyUser = () => {
           User bị ban
         </NavLink>
       </div>
-
       <div>
         <Outlet />
       </div>
