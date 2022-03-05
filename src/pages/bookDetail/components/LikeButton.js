@@ -10,7 +10,7 @@ const LikeButton = ({ id }) => {
 
   const likeBook = async () => {
     if (!authState.isAuth) {
-      navigate("/login", { replace: true });
+      navigate("/dang-nhap", { replace: true });
       return;
     }
     const response = await bookService.likeBook({

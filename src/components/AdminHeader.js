@@ -42,7 +42,9 @@ const AdminHeader = () => {
                 <li key={item.id}>
                   <Link
                     to={
-                      item.isPrivate && authState.isAuth ? item.link : "/login"
+                      item.isPrivate && authState.isAuth
+                        ? item.link
+                        : "/dang-nhap"
                     }
                     className="relative cursor-pointer font-semibold text-gray-200 transition-all hover:text-yellow-500"
                   >

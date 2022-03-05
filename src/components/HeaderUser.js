@@ -86,7 +86,7 @@ const HeaderUser = ({ authState }) => {
           <div className="p-4">
             <div className="mb-2">
               <Link
-                to="/login"
+                to="/dang-nhap"
                 className="flex w-full justify-center rounded-md border border-blue-500 py-2 px-6 text-center text-sm transition-all hover:bg-blue-500 hover:text-white"
               >
                 <AiOutlineAliwangwang className="mr-2 text-lg" /> Đăng nhập

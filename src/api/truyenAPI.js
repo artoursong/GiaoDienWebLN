@@ -95,7 +95,6 @@ const bookService = {
     return khachAPI.get(`follow/${id}`);
   },
   likeBook: (data) => {
-    console.log(data);
     return khachAPI.post("follow", data);
   },
   getReportList: () => {
