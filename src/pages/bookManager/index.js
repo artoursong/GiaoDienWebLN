@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams, Outlet, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams, Outlet } from "react-router-dom";
 
 import Container from "components/Container";
 import PageHeader from "components/PageHeader";
@@ -8,7 +8,7 @@ import bookService from "api/truyenAPI";
 
 import { useTruyen } from "context/truyenContext";
 
-const QuanLyTruyen = () => {
+const BookManager = () => {
   const params = useParams();
   const [, setTruyen] = useTruyen();
 
@@ -40,4 +40,4 @@ const QuanLyTruyen = () => {
   );
 };
 
-export default QuanLyTruyen;
+export default BookManager;

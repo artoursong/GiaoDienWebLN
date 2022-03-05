@@ -4,11 +4,10 @@ import validationSchema from "./formik/validationSchema";
 import { useFormik } from "formik";
 import { Editor } from "@tinymce/tinymce-react";
 import bookService from "api/truyenAPI";
-import LoadingSpinner from "components/LoadingSpinner";
 import { useParams } from "react-router-dom";
 import { useTruyen } from "context/truyenContext";
 
-const FormTaoChuong = () => {
+const CreateChapter = () => {
   const [truyen, setTruyen] = useTruyen();
   const params = useParams();
   const [content, setContent] = useState("");
@@ -48,9 +47,9 @@ const FormTaoChuong = () => {
     setContent(newValue);
   };
 
-  function createMarkup(content) {
-    return { __html: content };
-  }
+  // function createMarkup(content) {
+  //   return { __html: content };
+  // }
 
   return (
     <>
@@ -107,9 +106,7 @@ const FormTaoChuong = () => {
                   "insertdatetime media table paste wordcount",
                 ],
                 toolbar:
-                  "undo redo | formatselect | bold italic | \
-              alignleft aligncenter alignright | \
-              bullist numlist outdent indent | help",
+                  "undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | help",
               }}
               onEditorChange={handleEditorChange}
               value={content}
@@ -129,4 +126,4 @@ const FormTaoChuong = () => {
   );
 };
 
-export default FormTaoChuong;
+export default CreateChapter;

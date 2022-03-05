@@ -1,23 +1,24 @@
 import { useRoutes, Navigate } from "react-router-dom";
 import { lazy } from "react";
 
+// pages
 import MainLayout from "components/Layout/HomeLayout";
-import Danhsach from "../pages/danhsach";
-import BookTable from "pages/User/components/BookTable";
-import BookmarkTable from "pages/User/components/BookmarkTable";
-import Profile from "pages/User/components/Profile";
-import ChangePassword from "pages/User/components/ChangePassword";
-import AdminQuanLyTruyen from "pages/Admin/QuanLyTruyen";
-import ManageBook from "pages/QuanLyTruyen/ManageBook";
-import CreateBook from "pages/QuanLyTruyen/components/CreateBook";
-import EditBook from "pages/QuanLyTruyen/components/EditBook";
-import FormTaoTap from "pages/QuanLyTruyen/components/FormTaoTap";
-import FormTaoChuong from "pages/QuanLyTruyen/components/FormTaoChuong";
+import Books from "../pages/books";
+import BookTable from "pages/profileManager/components/BookTable";
+import BookmarkTable from "pages/profileManager/components/BookmarkTable";
+import Profile from "pages/profileManager/components/Profile";
+import ChangePassword from "pages/profileManager/components/ChangePassword";
+import AdminBookManager from "pages/admin/AdminBookManager";
+import ManageBook from "pages/bookManager/ManageBook";
+import CreateBook from "pages/bookManager/components/CreateBook";
+import EditBook from "pages/bookManager/components/EditBook";
+import CreateVolume from "pages/bookManager/components/CreateVolume";
+import CreateChapter from "pages/bookManager/components/CreateChapter";
 import AdminLayout from "components/Layout/AdminLayout";
-import QuanLyUser from "pages/Admin/QuanLyUser";
-import ReportedUsers from "pages/Admin/components/ReportedUsers";
-import BannedUser from "pages/Admin/components/BannedUser";
-import UserNovels from "pages/User/components/PostedNovels";
+import AdminUserManager from "pages/admin/AdminUserManager";
+import ReportedUsers from "pages/admin/components/ReportedUsers";
+import BannedUser from "pages/admin/components/BannedUser";
+import UserNovels from "pages/profileManager/components/PostedNovels";
 
 // layout
 import CommonLayout from "components/Layout/CommonLayout";
@@ -29,14 +30,15 @@ import RoleRoute from "./RoleRoute";
 // context
 import { TruyenProvider } from "context/truyenContext";
 
+// pages lazy load
 const Home = lazy(() => import("pages/home"));
-const DocTruyen = lazy(() => import("pages/doctruyen"));
-const User = lazy(() => import("pages/User"));
-const Login = lazy(() => import("pages/dangnhap"));
-const Register = lazy(() => import("pages/dangky"));
-const Error = lazy(() => import("pages/Error"));
-const QuanLyTruyen = lazy(() => import("pages/QuanLyTruyen"));
-const Truyen = lazy(() => import("pages/truyen"));
+const DocTruyen = lazy(() => import("pages/readBook"));
+const User = lazy(() => import("pages/profileManager"));
+const Login = lazy(() => import("pages/login"));
+const Register = lazy(() => import("pages/register"));
+const Error = lazy(() => import("pages/error"));
+const QuanLyTruyen = lazy(() => import("pages/bookManager"));
+const Truyen = lazy(() => import("pages/bookDetail"));
 
 const Routes = () => {
   const routes = [
@@ -50,7 +52,7 @@ const Routes = () => {
         },
         {
           path: "danh-sach",
-          element: <Danhsach />,
+          element: <Books />,
         },
         {
           path: "doc-truyen/:id",
@@ -124,11 +126,11 @@ const Routes = () => {
           children: [
             {
               path: ":volumeId/edit",
-              element: <FormTaoTap mode={"edit"} />,
+              element: <CreateVolume mode={"edit"} />,
             },
             {
               path: ":volumeId/create",
-              element: <FormTaoChuong mode={"create"} />,
+              element: <CreateChapter mode={"create"} />,
             },
           ],
         },
@@ -148,7 +150,7 @@ const Routes = () => {
         },
         {
           path: "user",
-          element: <QuanLyUser />,
+          element: <AdminUserManager />,
           children: [
             {
               path: "reports",
@@ -162,7 +164,7 @@ const Routes = () => {
         },
         {
           path: "novels",
-          element: <AdminQuanLyTruyen />,
+          element: <AdminBookManager />,
         },
       ],
     },

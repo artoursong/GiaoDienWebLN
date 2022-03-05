@@ -12,7 +12,7 @@ import LoadingSpinner from "components/LoadingSpinner";
 import Backdrop from "components/Backdrop";
 import Bookmark from "./components/Bookmark";
 
-const DocTruyen = () => {
+const ReadBook = () => {
   const [data, setData] = useState(null);
   const [bookMark, setBookmark] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -197,4 +197,4 @@ const DocTruyen = () => {
   );
 };
 
-export default DocTruyen;
+export default ReadBook;

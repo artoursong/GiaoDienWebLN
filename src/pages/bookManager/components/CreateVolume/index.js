@@ -6,10 +6,9 @@ import { useFormik } from "formik";
 import { useParams } from "react-router-dom";
 import bookService from "api/truyenAPI";
 import { useTruyen } from "context/truyenContext";
-import LoadingSpinner from "components/LoadingSpinner";
 import ImageUpload from "../CreateBook/ImageUpload";
 
-const FormTaoTap = ({ mode }) => {
+const CreateVolume = ({ mode }) => {
   const [, setTruyen] = useTruyen();
   const [isLoading, setIsLoading] = useState(false);
   const [uploadImg, setUploadImg] = useState({ url: "", file: null });
@@ -143,4 +142,4 @@ const FormTaoTap = ({ mode }) => {
   );
 };
 
-export default FormTaoTap;
+export default CreateVolume;

@@ -14,7 +14,7 @@ import Chapters from "./components/Chapters";
 import Suggestions from "./components/Suggestions";
 import Comment from "./components/Comment";
 
-const BookDetailPage = () => {
+const BookDetail = () => {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -153,4 +153,4 @@ const BookDetailPage = () => {
   );
 };
 
-export default BookDetailPage;
+export default BookDetail;

@@ -4,7 +4,6 @@ import bookService from "api/truyenAPI";
 import { useAuth } from "context/authContext";
 import LoadingSpinner from "components/LoadingSpinner";
 import { Link } from "react-router-dom";
-import SectionHeader from "components/Section/SectionHeader";
 
 const BookTable = () => {
   const [books, setBooks] = useState([]);

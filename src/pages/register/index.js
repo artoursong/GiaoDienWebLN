@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import initialValues from "./formik/initialValues";
 import validationSchema from "./formik/validationSchema";
 
-const DangKy = () => {
+const Register = () => {
   const [error, setError] = useState("");
   const formik = useFormik({
     validationSchema,
@@ -153,4 +153,4 @@ const DangKy = () => {
   );
 };
 
-export default DangKy;
+export default Register;
