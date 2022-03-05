@@ -9,7 +9,6 @@ import SectionDivider from "components/Section/SectionDivider";
 import SectionHeader from "components/Section/SectionHeader";
 
 const BaseListBook = ({ sectionTitle, books }) => {
-  console.log(books);
   return (
     <SectionDivider>
       <div className="mb-10">
@@ -19,8 +18,6 @@ const BaseListBook = ({ sectionTitle, books }) => {
       <Swiper
         spaceBetween={25}
         slidesPerView={6}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
         className="w-full"
         modules={[Navigation]}
         navigation={true}

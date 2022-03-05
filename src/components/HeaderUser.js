@@ -58,22 +58,22 @@ const HeaderUser = ({ authState }) => {
       <div
         className={`${
           isOpen ? "visible opacity-100" : "invisible opacity-0"
-        } absolute right-0 z-10 mt-2 min-w-max rounded-md bg-white transition-all duration-200`}
+        } absolute right-0 z-10 mt-2 min-w-max rounded-md bg-gray-800 transition-all duration-200`}
       >
         {authState.isAuth ? (
           <div>
             <div className="p-4">
               <div className="mb-2">
                 <Link
-                  to="/user"
-                  className="flex w-full justify-center rounded-md border border-blue-500 py-2 px-4 text-center text-sm transition-all hover:bg-blue-500 hover:text-white"
+                  to="/user/profile"
+                  className="flex w-full justify-center rounded-md border border-indigo-600 py-2 px-4 text-center text-sm text-white transition-all hover:bg-indigo-600"
                 >
                   <AiOutlineUser className="mr-2 text-lg" /> Trang cá nhân
                 </Link>
               </div>
               <div>
                 <button
-                  className="flex w-full justify-center rounded-md border border-blue-500 py-2 px-4 text-center text-sm transition-all hover:bg-blue-500 hover:text-white"
+                  className="flex w-full justify-center rounded-md border border-indigo-600 py-2 px-4 text-center text-sm text-white transition-all hover:bg-indigo-600"
                   onClick={logout}
                 >
                   <IoExitOutline className="mr-2 text-lg" />
@@ -86,7 +86,7 @@ const HeaderUser = ({ authState }) => {
           <div className="p-4">
             <div className="mb-2">
               <Link
-                to="/login"
+                to="/dang-nhap"
                 className="flex w-full justify-center rounded-md border border-blue-500 py-2 px-6 text-center text-sm transition-all hover:bg-blue-500 hover:text-white"
               >
                 <AiOutlineAliwangwang className="mr-2 text-lg" /> Đăng nhập

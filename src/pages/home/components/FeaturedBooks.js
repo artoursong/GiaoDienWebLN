@@ -40,8 +40,6 @@ const FeaturedBooks = ({ data }) => {
             <Swiper
               spaceBetween={30}
               slidesPerView={4}
-              onSlideChange={() => console.log("slide change")}
-              onSwiper={(swiper) => console.log(swiper)}
               className="w-full"
               modules={[Navigation]}
               navigation={true}
