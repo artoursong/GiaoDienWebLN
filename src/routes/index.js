@@ -1,121 +1,190 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "../pages/home";
-import User from "../pages/User";
+import { useRoutes, Navigate } from "react-router-dom";
+import { lazy } from "react";
+
+import MainLayout from "components/Layout/HomeLayout";
 import Danhsach from "../pages/danhsach";
-import MainLayout from "../components/Layout/HomeLayout";
-import Login from "pages/dangnhap";
-import Truyen from "../pages/truyen";
-import ProtectedRoute from "./ProtectedRoute";
-import QuanLyTruyen from "pages/QuanLyTruyen";
-import DocTruyen from "pages/doctruyen";
-import FormTaoTap from "pages/QuanLyTruyen/components/FormTaoTap";
-import FormTaoChuong from "pages/QuanLyTruyen/components/FormTaoChuong";
-import { TruyenProvider } from "context/truyenContext";
-import Profile from "pages/User/components/Profile";
-import ChangePassword from "pages/User/components/ChangePassword";
-import UserNovels from "pages/User/components/PostedNovels";
 import BookTable from "pages/User/components/BookTable";
 import BookmarkTable from "pages/User/components/BookmarkTable";
-import AdminLayout from "components/Layout/AdminLayout";
+import Profile from "pages/User/components/Profile";
+import ChangePassword from "pages/User/components/ChangePassword";
 import AdminQuanLyTruyen from "pages/Admin/QuanLyTruyen";
-import QuanLyUser from "pages/Admin/QuanLyUser";
-import ReportedUsers from "pages/Admin/components/ReportedUsers";
-import BannedUser from "pages/Admin/components/BannedUser";
-import DangKy from "pages/dangky";
-import CommonLayout from "components/Layout/CommonLayout";
 import ManageBook from "pages/QuanLyTruyen/ManageBook";
 import CreateBook from "pages/QuanLyTruyen/components/CreateBook";
 import EditBook from "pages/QuanLyTruyen/components/EditBook";
-import { Navigate } from "react-router-dom";
+import FormTaoTap from "pages/QuanLyTruyen/components/FormTaoTap";
+import FormTaoChuong from "pages/QuanLyTruyen/components/FormTaoChuong";
+import AdminLayout from "components/Layout/AdminLayout";
+import QuanLyUser from "pages/Admin/QuanLyUser";
+import ReportedUsers from "pages/Admin/components/ReportedUsers";
+import BannedUser from "pages/Admin/components/BannedUser";
+import UserNovels from "pages/User/components/PostedNovels";
 
-const AppRouter = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/*" element={<MainLayout />}>
-          <Route index element={<Home />} />
-          <Route path="danhsach" element={<Danhsach />} />
-          <Route path="truyen/:id" element={<DocTruyen />} />
-          <Route path="detail/:id" element={<Truyen />} />
+// layout
+import CommonLayout from "components/Layout/CommonLayout";
 
-          {/* <Route path="/user" element={<UserLayout/>}>
-                    <Route index element={<User/>}/>
-                    <Route path="edit" element={<Edit/>}/>
-                </Route> */}
-        </Route>
+// guard
+import ProtectedRoute from "./ProtectedRoute";
+import RoleRoute from "./RoleRoute";
 
-        <Route
-          path="user/*"
-          element={
-            <ProtectedRoute isPrivate={true}>
-              <CommonLayout>
-                <User />
-              </CommonLayout>
-            </ProtectedRoute>
-          }
-        >
-          <Route path="kesach" element={<BookTable />} />
-          <Route path="bookmark" element={<BookmarkTable />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="password" element={<ChangePassword />} />
-          <Route path="novels" element={<UserNovels />} />
-          <Route
-            path="*"
-            element={<Navigate to={"/user/profile"} replace={true} />}
-          />
-        </Route>
-        <Route
-          path="manage"
-          element={
-            <ProtectedRoute isPrivate={true}>
-              <TruyenProvider>
-                <CommonLayout>
-                  <QuanLyTruyen />
-                </CommonLayout>
-              </TruyenProvider>
-            </ProtectedRoute>
-          }
-        >
-          <Route index element={<ManageBook />} />
-          <Route path="create" element={<CreateBook />} />
-          <Route path=":id" element={<EditBook />}>
-            <Route
-              path=":volumeId/edit"
-              element={<FormTaoTap mode={"edit"} />}
-            />
+// context
+import { TruyenProvider } from "context/truyenContext";
 
-            <Route
-              path=":volumeId/create"
-              element={<FormTaoChuong mode={"create"} />}
-            />
-          </Route>
-          {/* <Route path="create" element={<FormTaoTap mode={"create"} />} /> */}
+const Home = lazy(() => import("pages/home"));
+const DocTruyen = lazy(() => import("pages/doctruyen"));
+const User = lazy(() => import("pages/User"));
+const Login = lazy(() => import("pages/dangnhap"));
+const Register = lazy(() => import("pages/dangky"));
+const Error = lazy(() => import("pages/Error"));
+const QuanLyTruyen = lazy(() => import("pages/QuanLyTruyen"));
+const Truyen = lazy(() => import("pages/truyen"));
 
-          {/* <Route
-              path="chapter/edit/:chapterId"
-              element={<FormTaoChuong mode={"edit"} />}
-            /> */}
-        </Route>
+const Routes = () => {
+  const routes = [
+    {
+      path: "/",
+      element: <MainLayout />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "danh-sach",
+          element: <Danhsach />,
+        },
+        {
+          path: "doc-truyen/:id",
+          element: <DocTruyen />,
+        },
+        {
+          path: "chi-tiet/:id",
+          element: <Truyen />,
+        },
+      ],
+    },
+    {
+      path: "/user/*",
+      element: (
+        <ProtectedRoute isPrivate={true}>
+          <CommonLayout>
+            <User />
+          </CommonLayout>
+        </ProtectedRoute>
+      ),
+      children: [
+        {
+          path: "ke-sach",
+          element: <BookTable />,
+        },
+        {
+          path: "bookmark",
+          element: <BookmarkTable />,
+        },
+        {
+          path: "profile",
+          element: <Profile />,
+        },
+        {
+          path: "change-password",
+          element: <ChangePassword />,
+        },
+        {
+          path: "novels",
+          element: <UserNovels />,
+        },
+        {
+          path: "*",
+          element: <Navigate to={"/user/profile"} replace={true} />,
+        },
+      ],
+    },
+    {
+      path: "/manage",
+      element: (
+        <ProtectedRoute isPrivate={true}>
+          <TruyenProvider>
+            <CommonLayout>
+              <QuanLyTruyen />
+            </CommonLayout>
+          </TruyenProvider>
+        </ProtectedRoute>
+      ),
+      children: [
+        {
+          index: true,
+          element: <ManageBook />,
+        },
+        {
+          path: "create",
+          element: <CreateBook />,
+        },
+        {
+          path: ":id",
+          element: <EditBook />,
+          children: [
+            {
+              path: ":volumeId/edit",
+              element: <FormTaoTap mode={"edit"} />,
+            },
+            {
+              path: ":volumeId/create",
+              element: <FormTaoChuong mode={"create"} />,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      path: "/admin",
+      element: (
+        <RoleRoute>
+          <AdminLayout />
+        </RoleRoute>
+      ),
+      children: [
+        {
+          index: true,
+          element: <div>Hello</div>,
+        },
+        {
+          path: "user",
+          element: <QuanLyUser />,
+          children: [
+            {
+              path: "reports",
+              element: <ReportedUsers />,
+            },
+            {
+              path: "ban",
+              element: <BannedUser />,
+            },
+          ],
+        },
+        {
+          path: "novels",
+          element: <AdminQuanLyTruyen />,
+        },
+      ],
+    },
+    {
+      path: "/dang-nhap",
+      element: <Login />,
+    },
+    {
+      path: "/dang-ky",
+      element: <Register />,
+    },
+    {
+      path: "/404",
+      element: <Error />,
+    },
+    {
+      path: "*",
+      element: <Navigate to={"/404"} replace={true} />,
+    },
+  ];
 
-        <Route
-          path="admin"
-          element={
-            <ProtectedRoute isPrivate={true}>
-              <AdminLayout />
-            </ProtectedRoute>
-          }
-        >
-          <Route path="user" element={<QuanLyUser />}>
-            <Route path="reports" element={<ReportedUsers />} />
-            <Route path="ban" element={<BannedUser />} />
-          </Route>
-          <Route index element={<div>Hello</div>} />
-          <Route path="truyen" element={<AdminQuanLyTruyen />} />
-        </Route>
-        <Route path="login" element={<Login />} />
-        <Route path="dang-ky" element={<DangKy />} />
-      </Routes>
-    </Router>
-  );
+  return <>{useRoutes(routes)}</>;
 };
-export default AppRouter;
+
+export default Routes;

@@ -1,19 +1,18 @@
 import { useAuth } from "context/authContext";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-const ProtectedRoute = ({ children, isPrivate }) => {
+const RoleRoute = ({ children }) => {
   const [authState] = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isPrivate) return;
-
-    if (isPrivate && !authState.isAuth) {
+    if (!authState.user.role || !authState.isAuth) {
       navigate("/dang-nhap", { replace: true });
     }
-  }, [isPrivate, authState.isAuth, navigate]);
+  }, [authState.user.role, navigate, authState.isAuth]);
+
   return <>{children}</>;
 };
 
-export default ProtectedRoute;
+export default RoleRoute;

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import SectionHeader from "components/Section/SectionHeader";
 import { useAuth } from "context/authContext";
 import bookService from "api/truyenAPI";
 import LoadingSpinner from "components/LoadingSpinner";
