@@ -24,7 +24,7 @@ const BaseListBook = ({ sectionTitle, books }) => {
       >
         {books.map((book, index) => (
           <SwiperSlide key={index}>
-            <FeaturedCard width="w-full" book={book} />
+            <FeaturedCard key={index} width="w-full" book={book} />
           </SwiperSlide>
         ))}
       </Swiper>

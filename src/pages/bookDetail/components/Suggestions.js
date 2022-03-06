@@ -26,15 +26,15 @@ const Suggestions = ({ books }) => {
                   {book.categories.length > 0 ? (
                     <ul className="mb-2 flex flex-wrap">
                       {book.categories.map((category, index) => (
-                        <>
+                        <div key={category.name}>
                           {index < 2 ? (
-                            <li key={index}>
+                            <li>
                               <span className="mx-1 cursor-pointer rounded-full bg-gray-200 bg-opacity-10 py-1 px-3 text-xs text-[#c9e1f8] transition-all hover:bg-opacity-20">
                                 {category.name}
                               </span>
                             </li>
                           ) : null}
-                        </>
+                        </div>
                       ))}
                     </ul>
                   ) : null}

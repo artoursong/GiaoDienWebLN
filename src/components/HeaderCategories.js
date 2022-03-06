@@ -51,8 +51,12 @@ const HeaderCategories = () => {
             ) : (
               <div className="grid grid-cols-3 gap-5">
                 {categories.length > 0
-                  ? categories.map((category) => (
-                      <Link className="hover:text-yellow-400" to="/">
+                  ? categories.map((category, index) => (
+                      <Link
+                        key={index}
+                        className="hover:text-yellow-400"
+                        to="/"
+                      >
                         {category.name}
                       </Link>
                     ))

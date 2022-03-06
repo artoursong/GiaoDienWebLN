@@ -87,14 +87,14 @@ const HeaderUser = ({ authState }) => {
             <div className="mb-2">
               <Link
                 to="/dang-nhap"
-                className="flex w-full justify-center rounded-md border border-blue-500 py-2 px-6 text-center text-sm transition-all hover:bg-blue-500 hover:text-white"
+                className="flex w-full justify-center rounded-md border border-indigo-600 py-2 px-4 text-center text-sm text-white transition-all hover:bg-indigo-600"
               >
                 <AiOutlineAliwangwang className="mr-2 text-lg" /> Đăng nhập
               </Link>
             </div>
             <div>
               <Link
-                className="flex w-full justify-center rounded-md border border-blue-500 py-2 px-6 text-center text-sm transition-all hover:bg-blue-500 hover:text-white"
+                className="flex w-full justify-center rounded-md border border-indigo-600 py-2 px-4 text-center text-sm text-white transition-all hover:bg-indigo-600"
                 to="/dang-ky"
               >
                 <AiOutlineUser className="mr-2 text-lg" />

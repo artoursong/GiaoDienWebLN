@@ -38,7 +38,7 @@ const Login = lazy(() => import("pages/login"));
 const Register = lazy(() => import("pages/register"));
 const Error = lazy(() => import("pages/error"));
 const QuanLyTruyen = lazy(() => import("pages/bookManager"));
-const Truyen = lazy(() => import("pages/bookDetail"));
+const BookDetail = lazy(() => import("pages/bookDetail"));
 
 const Routes = () => {
   const routes = [
@@ -60,7 +60,7 @@ const Routes = () => {
         },
         {
           path: "chi-tiet/:id",
-          element: <Truyen />,
+          element: <BookDetail />,
         },
       ],
     },

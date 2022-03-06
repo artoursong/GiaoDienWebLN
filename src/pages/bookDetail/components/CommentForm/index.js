@@ -4,12 +4,16 @@ import bookService from "api/truyenAPI";
 import { useParams } from "react-router-dom";
 import { useAuth } from "context/authContext";
 
+import Form from "components/Form";
+
 const initialValues = {
   comment: "",
 };
 
 const validationSchema = Yup.object().shape({
-  comment: Yup.string().required("Bình luận không được để trống"),
+  comment: Yup.string()
+    .required("Bình luận không được để trống")
+    .min(10, "Bình luận phải có ít nhất 10 ký tự."),
 });
 
 const CommentForm = ({ setData, setPageIndex }) => {
@@ -51,34 +55,21 @@ const CommentForm = ({ setData, setPageIndex }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="name" className="w-[150px] text-lg font-medium">
-        Tiêu đề
-      </label>
-      <div className="mb-4 w-full">
-        <textarea
+      <div className="my-4 w-full">
+        <Form.TextArea
           type="text"
           name="comment"
           value={values.comment}
           onChange={handleChange}
-          className={`block w-full rounded-md border border-gray-600 bg-transparent py-2 px-4 text-light-gray ${
-            touched.comment && errors.comment
-              ? "border-red-500"
-              : "border-gray-300"
-          }`}
-          autoComplete="off"
           onBlur={handleBlur}
+          rows={3}
+          isError={touched.comment && errors.comment}
+          error={<Form.Error>{errors.comment}</Form.Error>}
         />
-        {touched.comment && errors.comment ? (
-          <span className="italic text-red-500">{errors.comment}</span>
-        ) : null}
       </div>
-      <button
-        type="submit"
-        className="rounded bg-blue-600 py-2 px-6 text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50"
-        disabled={isSubmitting || !values.comment}
-      >
+      <Form.Submit disabled={isSubmitting || !values.comment || errors.comment}>
         Bình luận
-      </button>
+      </Form.Submit>
     </form>
   );
 };

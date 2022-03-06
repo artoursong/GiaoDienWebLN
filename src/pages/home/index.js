@@ -20,8 +20,8 @@ const Home = () => {
 
       if (response.status === 200) {
         setData(response.data);
-        setIsLoading(false);
       }
+      setIsLoading(false);
     };
 
     fetchData();

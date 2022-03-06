@@ -36,22 +36,21 @@ const FeaturedBooks = ({ data }) => {
             <div className="mb-10">
               <SectionHeader>Truyện nổi bật</SectionHeader>
             </div>
-
-            <Swiper
-              spaceBetween={30}
-              slidesPerView={4}
-              className="w-full"
-              modules={[Navigation]}
-              navigation={true}
-            >
-              {top10NoiBat.length > 0
-                ? top10NoiBat.map((truyen) => (
-                    <SwiperSlide key={truyen.iD_Book}>
-                      <FeaturedCard width="w-full" book={truyen} />
-                    </SwiperSlide>
-                  ))
-                : null}
-            </Swiper>
+            {top10NoiBat.length > 0 ? (
+              <Swiper
+                spaceBetween={30}
+                slidesPerView={4}
+                className="w-full"
+                modules={[Navigation]}
+                navigation={true}
+              >
+                {top10NoiBat.map((truyen, index) => (
+                  <SwiperSlide key={index}>
+                    <FeaturedCard key={index} width="w-full" book={truyen} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : null}
           </div>
           <div>
             <div className="mb-10 flex items-center justify-between">

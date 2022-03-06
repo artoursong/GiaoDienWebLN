@@ -12,12 +12,11 @@ import SaveButton from "./components/SaveButton";
 import Description from "./components/Description";
 import Chapters from "./components/Chapters";
 import Suggestions from "./components/Suggestions";
-import Comment from "./components/Comment";
+import Comments from "./components/Comments";
 
 const BookDetail = () => {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-
   const [book, setBook] = useState(null);
 
   useEffect(() => {
@@ -139,7 +138,7 @@ const BookDetail = () => {
           <div className="flex items-start gap-10 pt-10">
             <div className="w-[70%]">
               <Chapters volumes={book.volumes} />
-              <Comment idBook={id} />
+              <Comments idBook={id} />
             </div>
             <div className="sticky top-2 w-[30%]">
               <Suggestions books={book.same_Category} />

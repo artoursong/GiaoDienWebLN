@@ -7,10 +7,10 @@ const RoleRoute = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!authState.user.role || !authState.isAuth) {
+    if (!authState.user?.role || !authState.isAuth) {
       navigate("/dang-nhap", { replace: true });
     }
-  }, [authState.user.role, navigate, authState.isAuth]);
+  }, [authState.user, navigate, authState.isAuth]);
 
   return <>{children}</>;
 };

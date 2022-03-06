@@ -7,7 +7,7 @@ const menu = [
   {
     id: 1,
     title: "Quản lý truyện",
-    link: "/admin/truyen",
+    link: "/admin/novels",
     isPrivate: true,
   },
 

@@ -25,7 +25,7 @@ const Chapters = ({ volumes }) => {
                       key={chapter.id}
                     >
                       <Link
-                        to={`/truyen/${chapter.id}`}
+                        to={`/doc-truyen/${chapter.id}`}
                         className="text-[#c9e1f8]"
                       >
                         {chapter.name}
