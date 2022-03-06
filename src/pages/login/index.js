@@ -37,6 +37,8 @@ const Login = () => {
           }
         })
         .catch((err) => setError("Sai tai khoan hoac mat khau!"));
+
+      setSubmitting(false);
     },
   });
 

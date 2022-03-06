@@ -39,6 +39,7 @@ const Register = lazy(() => import("pages/register"));
 const Error = lazy(() => import("pages/error"));
 const QuanLyTruyen = lazy(() => import("pages/bookManager"));
 const BookDetail = lazy(() => import("pages/bookDetail"));
+const BookFilter = lazy(() => import("pages/bookFilter"));
 
 const Routes = () => {
   const routes = [
@@ -99,6 +100,14 @@ const Routes = () => {
           element: <Navigate to={"/user/profile"} replace={true} />,
         },
       ],
+    },
+    {
+      path: "/loc-truyen/",
+      element: (
+        <CommonLayout>
+          <BookFilter />
+        </CommonLayout>
+      ),
     },
     {
       path: "/manage",

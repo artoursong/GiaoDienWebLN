@@ -119,6 +119,9 @@ const bookService = {
   getCategory: () => {
     return khachAPI.get("category");
   },
+  findBook: (data) => {
+    return khachAPI.post("book/findBy", data);
+  },
 };
 
 export default bookService;
