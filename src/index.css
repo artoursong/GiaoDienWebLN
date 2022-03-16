@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.homePage {
+  background-image: url("https://res.cloudinary.com/dlbkvfo8l/image/upload/v1644697232/wp6327228-anime-90s-4k-wallpapers_m7rn9z.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+  @apply mt-5;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+  @apply bg-blue-500;
+  @apply rounded-full;
+}
+
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
