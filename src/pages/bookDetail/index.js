@@ -61,9 +61,7 @@ const BookDetail = () => {
                 <div className="mb-5 flex items-center">
                   <div className="relative mr-5 flex max-w-fit">
                     <BsStar className="text-7xl text-yellow-600" />
-                    <span className="absolute top-1/2 left-1/2 mt-[2px] -translate-x-1/2 -translate-y-1/2 transform font-bold text-yellow-600">
-                      5.0
-                    </span>
+                    <span className="absolute top-1/2 left-1/2 mt-[2px] -translate-x-1/2 -translate-y-1/2 transform font-bold text-yellow-600"></span>
                   </div>
                 </div>
                 <div className="mb-5 flex min-w-[400px] items-center text-lg text-[#c9e1f8]">
@@ -123,13 +121,15 @@ const BookDetail = () => {
                       })}
                     </span>
                   </div>
-                  <div className="flex flex-col items-center">
+                  {/* <div className="flex flex-col items-center">
                     <h4 className="mb-1 flex items-center text-lg font-semibold text-[#c9e1f8]">
                       <BsStar className="mr-2 text-2xl" />
                       Lượt đánh giá
                     </h4>
-                    <span className="text-xl text-[#c9e1f8]">6969</span>
-                  </div>
+                    <span className="text-xl text-[#c9e1f8]">
+                      {book.follow_sum}
+                    </span>
+                  </div> */}
                 </div>
               </div>
             </div>

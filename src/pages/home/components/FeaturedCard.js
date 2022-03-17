@@ -46,7 +46,7 @@ const FeaturedCard = ({ width = "full", book }) => {
             {book.tinh_trang ? "Đã hoàn thành" : "Chưa hoàn thành"}
           </span>
           <span className="rounded-md bg-green-600 bg-opacity-10 py-1 px-2">
-            120
+            {book.follow_sum}
           </span>
         </p>
       </div>
