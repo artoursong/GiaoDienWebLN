@@ -70,7 +70,7 @@ const BookTable = () => {
                               />
                             </div>
                             <Link
-                              to={`/detail/${book.iD_Book}`}
+                              to={`/chi-tiet/${book.iD_Book}`}
                               className="text-xl font-medium text-light-gray hover:text-indigo-500"
                             >
                               {book.name}

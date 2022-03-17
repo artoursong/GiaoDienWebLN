@@ -61,7 +61,7 @@ const AdminBookManager = () => {
                           >
                             <td className="whitespace-nowrap py-4 px-6 text-sm font-medium  text-white">
                               <Link
-                                to={`/detail/${book.iD_Book}`}
+                                to={`/chi-tiet/${book.iD_Book}`}
                                 classNameName="font-medium text-light-gray"
                               >
                                 {book.name}

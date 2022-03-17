@@ -7,6 +7,7 @@ import { RiMedalFill } from "react-icons/ri";
 import SectionDivider from "components/Section/SectionDivider";
 import FeaturedCard from "./FeaturedCard";
 import SectionHeader from "components/Section/SectionHeader";
+import { Link } from "react-router-dom";
 
 const FeaturedBooks = ({ data }) => {
   const { top10NoiBat, top10TheoDoi } = data;
@@ -56,13 +57,7 @@ const FeaturedBooks = ({ data }) => {
             <div className="mb-10 flex items-center justify-between">
               <SectionHeader>Top theo dõi</SectionHeader>
               <div className="group relative">
-                <button className="relative cursor-pointer overflow-hidden rounded-md bg-white bg-opacity-10 py-2 px-4 font-bold text-white backdrop-blur-sm transition-all hover:bg-opacity-10">
-                  Top tháng
-                </button>
                 <ul className="invisible absolute right-0 w-[150px] rounded-md bg-white bg-opacity-20 opacity-0 backdrop-blur-md transition-all group-hover:visible group-hover:opacity-100">
-                  <li className="cursor-pointer py-2 px-4 font-medium text-white transition-all hover:text-blue-300">
-                    Top năm
-                  </li>
                   <li className="cursor-pointer py-2 px-4 font-medium text-white transition-all hover:text-blue-300">
                     Toàn thời gian
                   </li>
@@ -91,7 +86,9 @@ const FeaturedBooks = ({ data }) => {
                     </p>
                   )}
                   <h4 className="max-w-[60%] truncate font-semibold text-[#cbdff3]">
-                    {truyen.name}
+                    <Link to={`/chi-tiet/${truyen.iD_Book}`}>
+                      {truyen.name}
+                    </Link>
                   </h4>
                   <p className="ml-auto text-sm text-[#cbdff3]">
                     {truyen.follow_sum} theo dõi
