@@ -18,6 +18,13 @@ const AdminBookManager = () => {
     fetchNewBook();
   }, []);
 
+  const deleteBook = async (id) => {
+    const response = await bookService.deleteBook(id);
+    if (response.status === 200 && response.data) {
+      setNewBook((prev) => prev.filter((book) => book.iD_Book !== id));
+    }
+  };
+
   return (
     <div>
       <Container size="max-w-[1000px]">
@@ -90,7 +97,10 @@ const AdminBookManager = () => {
                               >
                                 Sửa
                               </Link>
-                              <button className="text-indigo-400 hover:text-indigo-500 hover:underline">
+                              <button
+                                className="text-indigo-400 hover:text-indigo-500 hover:underline"
+                                onClick={() => deleteBook(book.iD_Book)}
+                              >
                                 Xóa
                               </button>
                             </td>
